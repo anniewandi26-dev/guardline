@@ -157,7 +157,6 @@
 
     document.querySelectorAll("[data-lang-select]").forEach((sel) => {
       if (sel.tagName === "SELECT") {
-        // Always show the active language name — never "by IP" wording.
         sel.value = lang;
         sel.setAttribute("aria-label", t("lang.label", {}, lang));
       }
@@ -166,6 +165,13 @@
     document.querySelectorAll("[data-lang-current]").forEach((el) => {
       el.textContent = meta.native;
     });
+
+    // Keep custom float switcher label in sync
+    try {
+      syncSwitcherLabel();
+    } catch (_) {
+      /* switcher may not exist yet during first boot */
+    }
 
     window.dispatchEvent(
       new CustomEvent("shouhao:lang", { detail: { lang, mode: currentMode, t } })
@@ -273,49 +279,96 @@
     setLang(lang, "auto");
   };
 
-  const buildSwitcher = (root = ".") => {
+  const syncSwitcherLabel = () => {
+    const btn = document.querySelector("[data-lang-btn]");
+    if (!btn) return;
+    const meta = getMeta(currentLang);
+    btn.textContent = meta.native || currentLang;
+    btn.setAttribute("aria-label", t("lang.label", {}, currentLang));
+    document.querySelectorAll("[data-lang-option]").forEach((b) => {
+      b.classList.toggle("is-active", b.getAttribute("data-lang-option") === currentLang);
+    });
+  };
+
+  const buildSwitcher = () => {
     const existing = document.querySelector("[data-lang-switcher]");
-    if (existing) return existing;
+    if (existing) {
+      syncSwitcherLabel();
+      return existing;
+    }
 
     const wrap = document.createElement("div");
-    wrap.className = "lang-switcher";
+    wrap.className = "lang-switcher lang-switcher--float";
     wrap.setAttribute("data-lang-switcher", "");
 
-    const select = document.createElement("select");
-    select.id = "shouhao-lang-select";
-    select.className = "lang-switcher__select";
-    select.setAttribute("data-lang-select", "");
-    select.setAttribute("aria-label", "Language");
-    select.setAttribute("data-i18n", "lang.label");
-    select.setAttribute("data-i18n-attr", "aria-label");
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "lang-switcher__btn";
+    btn.setAttribute("data-lang-btn", "");
+    btn.setAttribute("aria-haspopup", "listbox");
+    btn.setAttribute("aria-expanded", "false");
+    btn.textContent = getMeta(currentLang).native || currentLang;
+
+    const menu = document.createElement("div");
+    menu.className = "lang-switcher__menu";
+    menu.setAttribute("data-lang-menu", "");
+    menu.hidden = true;
+    menu.setAttribute("role", "listbox");
 
     languages.forEach((lang) => {
-      const opt = document.createElement("option");
-      opt.value = lang.code;
-      opt.textContent = lang.native;
-      select.appendChild(opt);
+      const item = document.createElement("button");
+      item.type = "button";
+      item.className = "lang-switcher__option";
+      item.setAttribute("data-lang-option", lang.code);
+      item.setAttribute("role", "option");
+      item.textContent = lang.native;
+      if (lang.code === currentLang) item.classList.add("is-active");
+      item.addEventListener("click", (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setLang(lang.code, "manual");
+        syncSwitcherLabel();
+        menu.hidden = true;
+        btn.setAttribute("aria-expanded", "false");
+        wrap.classList.remove("is-open");
+      });
+      menu.appendChild(item);
     });
 
-    select.addEventListener("change", () => {
-      // Manual pick wins immediately and blocks late IP detection overwrite.
-      setLang(select.value, "manual");
-    });
-    // iOS/Safari: ensure the native picker opens on first tap
-    select.addEventListener(
+    const toggle = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const open = menu.hidden;
+      menu.hidden = !open;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+      wrap.classList.toggle("is-open", open);
+    };
+
+    btn.addEventListener("click", toggle);
+    btn.addEventListener(
       "touchend",
       (e) => {
+        // Prefer click; prevent ghost double-toggles on some WebViews
         e.stopPropagation();
       },
       { passive: true }
     );
 
-    wrap.appendChild(select);
+    document.addEventListener(
+      "click",
+      (e) => {
+        if (!wrap.contains(e.target)) {
+          menu.hidden = true;
+          btn.setAttribute("aria-expanded", "false");
+          wrap.classList.remove("is-open");
+        }
+      },
+      true
+    );
 
-    // Always mount on body with fixed high z-index so it stays clickable
-    // above the Safari gate overlay (and works on enter + inner pages).
-    wrap.classList.add("lang-switcher--float");
+    wrap.appendChild(btn);
+    wrap.appendChild(menu);
     document.body.appendChild(wrap);
-
     return wrap;
   };
 

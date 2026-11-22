@@ -247,11 +247,32 @@ a:hover {
 /* Floated switcher is owned by i18n.js (body fixed) — keep above Safari gate */
 .lang-switcher--float {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: max(0.75rem, env(safe-area-inset-top));
+  right: max(0.75rem, env(safe-area-inset-right));
   z-index: 100001;
   margin: 0;
   pointer-events: auto !important;
+}
+
+body:not(.enter-body) .lang-switcher__btn {
+  background: rgba(255, 255, 255, 0.92);
+  color: #0e231c;
+  border-color: rgba(14, 35, 28, 0.15);
+  box-shadow: 0 8px 22px rgba(14, 35, 28, 0.12);
+}
+
+body:not(.enter-body) .lang-switcher__menu {
+  background: #fff;
+  border-color: rgba(14, 35, 28, 0.12);
+}
+
+body:not(.enter-body) .lang-switcher__option {
+  color: #0e231c;
+}
+
+body:not(.enter-body) .lang-switcher__option.is-active,
+body:not(.enter-body) .lang-switcher__option:hover {
+  background: rgba(11, 122, 83, 0.12);
 }
 
 .lang-switcher__label {

@@ -10,6 +10,8 @@ const SITE = "GuardLine";
 const TAGLINE = "Practical WhatsApp anti-theft handbook";
 const TOTAL = articles.length;
 const NEWS_TOTAL = news.length;
+const ASSET_V = String(Date.now());
+const v = (file) => `${file}?v=${ASSET_V}`;
 const FONT_HREF =
   "https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap";
 
@@ -72,8 +74,8 @@ function shell({
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="${FONT_HREF}" rel="stylesheet" />
-  <link rel="stylesheet" href="${root}/styles.css" />
-  <link rel="stylesheet" href="${root}/safari-gate.css" />
+  <link rel="stylesheet" href="${root}/${v("styles.css")}" />
+  <link rel="stylesheet" href="${root}/${v("safari-gate.css")}" />
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}${pageTitleAttr}>
   <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
@@ -110,12 +112,12 @@ function shell({
       <p class="site-footer__copy" data-i18n="footer.copy" data-i18n-var-year="2026">© <span data-year></span> ${SITE}</p>
     </div>
   </footer>
-  <script src="${root}/locales.js"></script>
-  <script src="${root}/i18n.js"></script>
-  <script src="${root}/safari-gate.js"></script>
-  <script src="${root}/script.js"></script>
-  <script src="${root}/content-locales.js" defer></script>
-  <script src="${root}/news-meta-locales.js" defer></script>
+  <script src="${root}/${v("locales.js")}"></script>
+  <script src="${root}/${v("i18n.js")}"></script>
+  <script src="${root}/${v("safari-gate.js")}"></script>
+  <script src="${root}/${v("script.js")}"></script>
+  <script src="${root}/${v("content-locales.js")}" defer></script>
+  <script src="${root}/${v("news-meta-locales.js")}" defer></script>
   <script>
     // Apply article/news/tool copy once heavy packs finish (keeps first paint fast).
     (function () {
@@ -565,8 +567,8 @@ const enterPage = `<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="${FONT_HREF}" rel="stylesheet" />
-  <link rel="stylesheet" href="enter.css" />
-  <link rel="stylesheet" href="safari-gate.css" />
+  <link rel="stylesheet" href="${v("enter.css")}" />
+  <link rel="stylesheet" href="${v("safari-gate.css")}" />
 </head>
 <body class="enter-body" data-i18n-page-title="enter.title">
   <div class="enter-bg" aria-hidden="true"></div>
@@ -630,10 +632,10 @@ const enterPage = `<!DOCTYPE html>
     </div>
   </div>
 
-  <script src="locales.js"></script>
-  <script src="i18n.js"></script>
-  <script src="safari-gate.js"></script>
-  <script src="enter.js"></script>
+  <script src="${v("locales.js")}"></script>
+  <script src="${v("i18n.js")}"></script>
+  <script src="${v("safari-gate.js")}"></script>
+  <script src="${v("enter.js")}"></script>
 </body>
 </html>`;
 
