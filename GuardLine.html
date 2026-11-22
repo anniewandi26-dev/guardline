@@ -500,61 +500,146 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  min-height: 2.6rem;
-  min-width: 7.5rem;
-  padding: 0.45rem 0.9rem;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  min-width: 4.75rem;
+  padding: 0.5rem 0.95rem;
   border-radius: 999px;
   border: 1px solid rgba(232, 245, 239, 0.28);
-  background: rgba(7, 21, 16, 0.88);
+  background: rgba(7, 21, 16, 0.9);
   color: #e8f5ef;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
   cursor: pointer;
   pointer-events: auto !important;
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.lang-switcher__btn::after {
-  content: "▾";
-  font-size: 0.85em;
-  opacity: 0.85;
+.lang-switcher__globe {
+  font-size: 1.05rem;
+  line-height: 1;
 }
 
-.lang-switcher__menu {
-  position: absolute;
-  top: calc(100% + 0.4rem);
-  right: 0;
-  width: min(70vw, 220px);
-  max-height: min(60vh, 360px);
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 14px;
-  border: 1px solid rgba(126, 208, 173, 0.35);
-  background: rgba(8, 28, 24, 0.97);
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
-  padding: 0.35rem;
+.lang-switcher__sheet {
+  position: fixed;
+  inset: 0;
   z-index: 100002;
+  display: none;
+  pointer-events: none;
 }
 
-.lang-switcher__option {
+.lang-switcher.is-open .lang-switcher__sheet {
   display: block;
-  width: 100%;
-  text-align: left;
+  pointer-events: auto;
+}
+
+.lang-switcher__backdrop {
+  position: absolute;
+  inset: 0;
   border: 0;
-  background: transparent;
-  color: #e8f5ef;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 0.7rem 0.75rem;
-  border-radius: 10px;
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.55);
   cursor: pointer;
 }
 
-.lang-switcher__option:hover,
-.lang-switcher__option:active,
+.lang-switcher__panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: min(78vh, 560px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px 22px 0 0;
+  background: #0c1f1a;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.45);
+  padding: 0.35rem 0 calc(0.75rem + env(safe-area-inset-bottom));
+}
+
+.lang-switcher__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem 0.55rem;
+}
+
+.lang-switcher__title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #e8f5ef;
+}
+
+.lang-switcher__close {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(232, 245, 239, 0.12);
+  color: #e8f5ef;
+  font-size: 1.55rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lang-switcher__list {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0.75rem 0.5rem;
+}
+
+.lang-switcher__group {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.lang-switcher__group--rest {
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(126, 208, 173, 0.2);
+}
+
+.lang-switcher__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 3.15rem;
+  text-align: left;
+  border: 1px solid rgba(126, 208, 173, 0.18);
+  background: rgba(232, 245, 239, 0.06);
+  color: #e8f5ef;
+  font: inherit;
+  padding: 0.7rem 0.95rem;
+  border-radius: 14px;
+  cursor: pointer;
+}
+
+.lang-switcher__option-native {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.lang-switcher__option-en {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: rgba(232, 245, 239, 0.55);
+  text-align: right;
+}
+
 .lang-switcher__option.is-active {
   background: rgba(37, 211, 102, 0.18);
+  border-color: rgba(37, 211, 102, 0.45);
+}
+
+.lang-switcher__option.is-active .lang-switcher__option-native::after {
+  content: " ✓";
+  color: #25d366;
+  font-weight: 900;
 }
 
 html[dir="rtl"] .lang-switcher--enter,
@@ -563,14 +648,9 @@ html[dir="rtl"] .lang-switcher--float {
   left: max(0.75rem, env(safe-area-inset-left));
 }
 
-html[dir="rtl"] .lang-switcher__menu {
-  right: auto;
-  left: 0;
-}
-
-html.i18n-detecting .lang-switcher--enter,
-html.i18n-detecting .lang-switcher--float {
-  opacity: 0.75;
+html.lang-sheet-open,
+html.lang-sheet-open body {
+  overflow: hidden;
 }
 
 @media (max-width: 640px) {
@@ -580,10 +660,6 @@ html.i18n-detecting .lang-switcher--float {
 
   .enter-brand {
     letter-spacing: 0.08em;
-  }
-
-  .lang-switcher--enter .lang-switcher__label {
-    display: none;
   }
 }
 
@@ -833,7 +909,7 @@ a:hover {
   flex-shrink: 0;
 }
 
-/* Floated language menu — must live in styles.css (home/tools/news do not load enter.css) */
+/* Floated language button + bottom sheet (easy on phone) */
 .lang-switcher--float,
 .lang-switcher--enter {
   position: fixed;
@@ -849,82 +925,175 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  min-height: 2.6rem;
-  min-width: 7.5rem;
-  padding: 0.45rem 0.9rem;
+  gap: 0.4rem;
+  min-height: 2.75rem;
+  min-width: 4.75rem;
+  padding: 0.5rem 0.95rem;
   border-radius: 999px;
-  border: 1px solid rgba(14, 35, 28, 0.15);
-  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(14, 35, 28, 0.16);
+  background: rgba(255, 255, 255, 0.96);
   color: #0e231c;
-  font-size: 16px;
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
   cursor: pointer;
   pointer-events: auto !important;
   box-shadow: 0 8px 22px rgba(14, 35, 28, 0.14);
+  -webkit-tap-highlight-color: transparent;
 }
 
-.lang-switcher__btn::after {
-  content: "▾";
-  font-size: 0.85em;
-  opacity: 0.75;
+.lang-switcher__globe {
+  font-size: 1.05rem;
+  line-height: 1;
 }
 
-.lang-switcher__menu {
-  position: absolute;
-  top: calc(100% + 0.4rem);
-  right: 0;
-  width: min(70vw, 220px);
-  max-height: min(60vh, 360px);
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  border-radius: 14px;
-  border: 1px solid rgba(14, 35, 28, 0.12);
-  background: #fff;
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-  padding: 0.35rem;
+.lang-switcher__sheet {
+  position: fixed;
+  inset: 0;
   z-index: 100002;
+  display: none;
+  pointer-events: none;
 }
 
-.lang-switcher__option {
+.lang-switcher.is-open .lang-switcher__sheet {
   display: block;
-  width: 100%;
-  text-align: left;
+  pointer-events: auto;
+}
+
+.lang-switcher__backdrop {
+  position: absolute;
+  inset: 0;
   border: 0;
-  background: transparent;
+  margin: 0;
+  padding: 0;
+  background: rgba(6, 18, 14, 0.45);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang-switcher__panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-height: min(78vh, 560px);
+  display: flex;
+  flex-direction: column;
+  border-radius: 22px 22px 0 0;
+  background: #fff;
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.2);
+  padding: 0.35rem 0 calc(0.75rem + env(safe-area-inset-bottom));
+  animation: langSheetUp 0.22s ease-out;
+}
+
+@keyframes langSheetUp {
+  from {
+    transform: translateY(18%);
+    opacity: 0.6;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.lang-switcher__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.85rem 1.1rem 0.55rem;
+  flex-shrink: 0;
+}
+
+.lang-switcher__title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
   color: #0e231c;
-  font-size: 15px;
-  font-weight: 600;
-  padding: 0.7rem 0.75rem;
-  border-radius: 10px;
+}
+
+.lang-switcher__close {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(14, 35, 28, 0.08);
+  color: #0e231c;
+  font-size: 1.55rem;
+  line-height: 1;
   cursor: pointer;
 }
 
-.lang-switcher__option:hover,
-.lang-switcher__option:active,
+.lang-switcher__list {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  padding: 0.25rem 0.75rem 0.5rem;
+  overscroll-behavior: contain;
+}
+
+.lang-switcher__group {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.lang-switcher__group--rest {
+  padding-top: 0.55rem;
+  border-top: 1px solid rgba(14, 35, 28, 0.1);
+}
+
+.lang-switcher__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-height: 3.15rem;
+  text-align: left;
+  border: 1px solid rgba(14, 35, 28, 0.08);
+  background: #f7faf8;
+  color: #0e231c;
+  font: inherit;
+  padding: 0.7rem 0.95rem;
+  border-radius: 14px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang-switcher__option-native {
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+
+.lang-switcher__option-en {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #5a7267;
+  text-align: right;
+}
+
+.lang-switcher__option:active {
+  transform: scale(0.985);
+}
+
 .lang-switcher__option.is-active {
-  background: rgba(11, 122, 83, 0.12);
+  background: rgba(11, 122, 83, 0.14);
+  border-color: rgba(11, 122, 83, 0.35);
+  box-shadow: inset 0 0 0 1px rgba(11, 122, 83, 0.2);
+}
+
+.lang-switcher__option.is-active .lang-switcher__option-native::after {
+  content: " ✓";
+  color: #0b7a53;
+  font-weight: 900;
 }
 
 .enter-body .lang-switcher__btn {
-  background: rgba(7, 21, 16, 0.88);
+  background: rgba(7, 21, 16, 0.9);
   color: #e8f5ef;
   border-color: rgba(232, 245, 239, 0.28);
   box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-}
-
-.enter-body .lang-switcher__menu {
-  background: rgba(8, 28, 24, 0.97);
-  border-color: rgba(126, 208, 173, 0.35);
-}
-
-.enter-body .lang-switcher__option {
-  color: #e8f5ef;
-}
-
-.enter-body .lang-switcher__option.is-active,
-.enter-body .lang-switcher__option:hover {
-  background: rgba(37, 211, 102, 0.18);
 }
 
 html[dir="rtl"] .lang-switcher--float,
@@ -933,15 +1102,15 @@ html[dir="rtl"] .lang-switcher--enter {
   left: max(0.75rem, env(safe-area-inset-left));
 }
 
-html[dir="rtl"] .lang-switcher__menu {
-  right: auto;
-  left: 0;
-}
-
 html.safari-gate-lock .lang-switcher--float,
 html.safari-gate-lock .lang-switcher--enter {
   touch-action: manipulation;
   pointer-events: auto !important;
+}
+
+html.lang-sheet-open,
+html.lang-sheet-open body {
+  overflow: hidden;
 }
 
 .lang-switcher__label {
@@ -2834,16 +3003,95 @@ window.SHOUHAO_CONTENT = {"en":{"articles":{"01-verification-code":{"category":"
     setLang(lang, "auto");
   };
 
+  // Short button labels — easy to scan on a small pill
+  const SHORT_LABEL = {
+    en: "EN",
+    "zh-CN": "中文",
+    "zh-TW": "繁中",
+    ja: "日本語",
+    ko: "한국어",
+    ms: "BM",
+    id: "ID",
+    es: "ES",
+    fr: "FR",
+    de: "DE",
+    "pt-BR": "PT",
+    "pt-PT": "PT",
+    ar: "ع",
+    th: "ไทย",
+    vi: "VI",
+    hi: "हि",
+    ru: "RU",
+  };
+
+  const POPULAR = ["zh-CN", "zh-TW", "en", "ms", "id", "ja", "ko", "es"];
+
   const syncSwitcherLabel = () => {
     const btn = document.querySelector("[data-lang-btn]");
+    const title = document.querySelector("[data-lang-sheet-title]");
     if (!btn) return;
     const meta = getMeta(currentLang);
-    // Visible label = language name; keep aria-label descriptive
-    btn.textContent = meta.native || currentLang;
-    btn.setAttribute("aria-label", `${t("lang.label", {}, currentLang)}: ${meta.native || currentLang}`);
+    const short = SHORT_LABEL[currentLang] || (meta.native || currentLang).slice(0, 4);
+    const labelEl = btn.querySelector("[data-lang-btn-text]");
+    if (labelEl) labelEl.textContent = short;
+    else btn.textContent = short;
+    btn.setAttribute(
+      "aria-label",
+      `${t("lang.label", {}, currentLang)}: ${meta.native || currentLang}`
+    );
+    if (title) title.textContent = t("lang.label", {}, currentLang);
     document.querySelectorAll("[data-lang-option]").forEach((b) => {
-      b.classList.toggle("is-active", b.getAttribute("data-lang-option") === currentLang);
+      const on = b.getAttribute("data-lang-option") === currentLang;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
     });
+  };
+
+  const closeSheet = (wrap, btn, sheet) => {
+    wrap.classList.remove("is-open");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+    if (sheet) sheet.setAttribute("aria-hidden", "true");
+    document.documentElement.classList.remove("lang-sheet-open");
+  };
+
+  const openSheet = (wrap, btn, sheet) => {
+    wrap.classList.add("is-open");
+    btn.setAttribute("aria-expanded", "true");
+    sheet.setAttribute("aria-hidden", "false");
+    document.documentElement.classList.add("lang-sheet-open");
+    const active = sheet.querySelector(".lang-switcher__option.is-active");
+    if (active) {
+      try {
+        active.scrollIntoView({ block: "nearest" });
+      } catch (_) {}
+    }
+  };
+
+  const buildOption = (lang, onPick) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "lang-switcher__option";
+    item.setAttribute("data-lang-option", lang.code);
+    item.setAttribute("role", "option");
+    item.setAttribute("aria-selected", lang.code === currentLang ? "true" : "false");
+    if (lang.code === currentLang) item.classList.add("is-active");
+
+    const native = document.createElement("span");
+    native.className = "lang-switcher__option-native";
+    native.textContent = lang.native;
+
+    const en = document.createElement("span");
+    en.className = "lang-switcher__option-en";
+    en.textContent = lang.name;
+
+    item.appendChild(native);
+    item.appendChild(en);
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onPick(lang.code);
+    });
+    return item;
   };
 
   const buildSwitcher = () => {
@@ -2861,70 +3109,106 @@ window.SHOUHAO_CONTENT = {"en":{"articles":{"01-verification-code":{"category":"
     btn.type = "button";
     btn.className = "lang-switcher__btn";
     btn.setAttribute("data-lang-btn", "");
-    btn.setAttribute("aria-haspopup", "listbox");
+    btn.setAttribute("aria-haspopup", "dialog");
     btn.setAttribute("aria-expanded", "false");
-    btn.textContent = getMeta(currentLang).native || currentLang;
+    btn.setAttribute("aria-controls", "lang-sheet");
+    btn.innerHTML =
+      '<span class="lang-switcher__globe" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z" stroke="currentColor" stroke-width="1.8"/></svg></span><span data-lang-btn-text></span>';
 
-    const menu = document.createElement("div");
-    menu.className = "lang-switcher__menu";
-    menu.setAttribute("data-lang-menu", "");
-    menu.hidden = true;
-    menu.setAttribute("role", "listbox");
+    const sheet = document.createElement("div");
+    sheet.className = "lang-switcher__sheet";
+    sheet.id = "lang-sheet";
+    sheet.setAttribute("data-lang-menu", "");
+    sheet.setAttribute("role", "dialog");
+    sheet.setAttribute("aria-modal", "true");
+    sheet.setAttribute("aria-hidden", "true");
+    sheet.setAttribute("aria-labelledby", "lang-sheet-title");
 
-    languages.forEach((lang) => {
-      const item = document.createElement("button");
-      item.type = "button";
-      item.className = "lang-switcher__option";
-      item.setAttribute("data-lang-option", lang.code);
-      item.setAttribute("role", "option");
-      item.textContent = lang.native;
-      if (lang.code === currentLang) item.classList.add("is-active");
-      item.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setLang(lang.code, "manual");
-        syncSwitcherLabel();
-        menu.hidden = true;
-        btn.setAttribute("aria-expanded", "false");
-        wrap.classList.remove("is-open");
-      });
-      menu.appendChild(item);
+    const backdrop = document.createElement("button");
+    backdrop.type = "button";
+    backdrop.className = "lang-switcher__backdrop";
+    backdrop.setAttribute("aria-label", "Close");
+    backdrop.tabIndex = -1;
+
+    const panel = document.createElement("div");
+    panel.className = "lang-switcher__panel";
+
+    const head = document.createElement("div");
+    head.className = "lang-switcher__head";
+
+    const title = document.createElement("h2");
+    title.className = "lang-switcher__title";
+    title.id = "lang-sheet-title";
+    title.setAttribute("data-lang-sheet-title", "");
+    title.textContent = t("lang.label", {}, currentLang);
+
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "lang-switcher__close";
+    closeBtn.setAttribute("aria-label", "Close");
+    closeBtn.textContent = "×";
+
+    head.appendChild(title);
+    head.appendChild(closeBtn);
+
+    const list = document.createElement("div");
+    list.className = "lang-switcher__list";
+    list.setAttribute("role", "listbox");
+
+    const pick = (code) => {
+      setLang(code, "manual");
+      syncSwitcherLabel();
+      closeSheet(wrap, btn, sheet);
+    };
+
+    const byCode = new Map(languages.map((l) => [l.code, l]));
+    const popularWrap = document.createElement("div");
+    popularWrap.className = "lang-switcher__group";
+    POPULAR.forEach((code) => {
+      const lang = byCode.get(code);
+      if (lang) popularWrap.appendChild(buildOption(lang, pick));
     });
+
+    const restWrap = document.createElement("div");
+    restWrap.className = "lang-switcher__group lang-switcher__group--rest";
+    languages
+      .filter((l) => !POPULAR.includes(l.code))
+      .forEach((lang) => restWrap.appendChild(buildOption(lang, pick)));
+
+    list.appendChild(popularWrap);
+    list.appendChild(restWrap);
+    panel.appendChild(head);
+    panel.appendChild(list);
+    sheet.appendChild(backdrop);
+    sheet.appendChild(panel);
 
     const toggle = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const open = menu.hidden;
-      menu.hidden = !open;
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-      wrap.classList.toggle("is-open", open);
+      if (wrap.classList.contains("is-open")) closeSheet(wrap, btn, sheet);
+      else openSheet(wrap, btn, sheet);
     };
 
     btn.addEventListener("click", toggle);
-    btn.addEventListener(
-      "touchend",
-      (e) => {
-        // Prefer click; prevent ghost double-toggles on some WebViews
-        e.stopPropagation();
-      },
-      { passive: true }
-    );
-
-    document.addEventListener(
-      "click",
-      (e) => {
-        if (!wrap.contains(e.target)) {
-          menu.hidden = true;
-          btn.setAttribute("aria-expanded", "false");
-          wrap.classList.remove("is-open");
-        }
-      },
-      true
-    );
+    closeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSheet(wrap, btn, sheet);
+    });
+    backdrop.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeSheet(wrap, btn, sheet);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && wrap.classList.contains("is-open")) {
+        closeSheet(wrap, btn, sheet);
+      }
+    });
 
     wrap.appendChild(btn);
-    wrap.appendChild(menu);
+    wrap.appendChild(sheet);
     document.body.appendChild(wrap);
+    syncSwitcherLabel();
     return wrap;
   };
 
