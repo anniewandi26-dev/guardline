@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="手机还能正常聊天，不代表没有第二双眼睛。网页版/电脑版一旦被挂上，对方可实时同步。教你检查、踢人、以及怎样避免再次中招。" data-content="articles.03-linked-devices.excerpt" />
+  <title>已关联设备完全手册：如何发现静默偷窥 · GuardLine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../safari-gate.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="brand" href="../home.html" data-i18n="brand.home" data-i18n-attr="aria-label" aria-label="GuardLine home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+      </a>
+      <nav class="nav" data-i18n="nav.aria" data-i18n-attr="aria-label" aria-label="Page navigation">
+        <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden" data-i18n="menu.open">Open menu</span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+      <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+    </div>
+  </header>
+  <main id="main">
+    
+      <article class="article-layout">
+        <p class="eyebrow" data-content="articles.03-linked-devices.category">防护设置</p>
+        <h1 class="article-title" data-content="articles.03-linked-devices.title" data-page-title-content="articles.03-linked-devices.title">已关联设备完全手册：如何发现静默偷窥</h1>
+        <div class="article-meta">
+          <span class="tag" data-i18n="article.of" data-i18n-var-n="3" data-i18n-var-total="30">Article 3 / 30</span>
+          <span data-content="articles.03-linked-devices.read">13 分钟</span>
+        </div>
+        <div class="article-body">
+          <div data-content="articles.03-linked-devices.body" data-content-html>
+      <p>有一种盗号并不戏剧：你没有突然被登出，聊天也还在，直到某天亲友说「你刚才问我要验证码」，或你在设置里看见一个从不认识的浏览器会话。这就是<strong>关联设备静默接入</strong>——攻击者不一定夺走手机主会话，而是让 WhatsApp Web / 桌面端挂在旁边同步消息。</p>
+      <p>对骗子来说，这种方式极其划算：你越晚发现，他们就能读越多群聊、搜集越多借钱话术素材，甚至直接以你的口吻在对话里操作。</p>
+
+      <h2>关联设备机制简述</h2>
+      <p>WhatsApp 允许你在手机主客户端之外，把电脑、平板、浏览器等关联为配套设备。正规用法是：在手机上打开「已关联的设备」→「关联新设备」，再扫描官方网页或桌面应用显示的二维码。</p>
+      <p>风险点在于：这个「扫码授权」流程本身是合法功能。骗子要做的，只是把<strong>他们控制的二维码</strong>放到假网站、假投票页、或直接在你解锁的手机上操作完成扫码。</p>
+
+      <h2>如何检查（请现在就做一次）</h2>
+      <ol>
+        <li>打开 WhatsApp → <strong>设置</strong> → <strong>已关联的设备</strong>（Android 有时在右上角更多菜单）。</li>
+        <li>查看列表中每一个条目：设备类型、大致活跃时间、名称是否眼熟。</li>
+        <li>对任何「我不记得关联过」的项目：点进去 → <strong>退出 / 登出</strong>。</li>
+        <li>若列表很长且你曾公用电脑登录，建议不熟悉的全部退出，需要时再重新官方关联。</li>
+      </ol>
+      <div class="callout"><p>养成习惯：每周固定一天（例如周日晚上）花 30 秒扫一眼列表。借出手机、点击可疑链接、用过酒店电脑之后，立刻加查一次。</p></div>
+
+      <h2>高危场景清单</h2>
+      <ul>
+        <li>扫描了聊天里发来的「验证 / 投票 / 领奖」二维码。</li>
+        <li>在非官方网站看到二维码，并按指示用 WhatsApp 去扫。</li>
+        <li>把已解锁手机交给别人「帮忙看个东西」「帮我连网页版」。</li>
+        <li>在网吧/展会公用电脑勾选了保持登录，事后忘记登出。</li>
+        <li>电脑中毒后，浏览器里的 WhatsApp Web 会话被共用。</li>
+      </ul>
+
+      <h2>发现陌生设备后的处理顺序</h2>
+      <ol>
+        <li>立即登出该设备（以及所有不确定设备）。</li>
+        <li>检查是否仍能控制主手机会话；若曾被挤下线，按夺回流程重新验证号码。</li>
+        <li>重设两步验证。</li>
+        <li>回顾最近点过的链接、扫描过的码，避免重复中招。</li>
+        <li>通知近期聊过敏感话题的联系人提高警惕。</li>
+      </ol>
+
+      <h2>安全使用电脑版的原则</h2>
+      <ul>
+        <li>只从官方渠道获取桌面应用，或自己在浏览器输入官方网页地址。</li>
+        <li>关联动作只从手机 App 内发起，不从陌生页面「倒逼」你去扫。</li>
+        <li>公用设备不要保持登录；用完回手机端踢掉。</li>
+        <li>长期不用的电脑会话，宁可多余登出。</li>
+      </ul>
+
+      <h2>小结</h2>
+      <p>「已关联的设备」是你账号的后门清单。它不是高级功能页，而是安全巡检页。把清查做成习惯，很多「我也不知道怎么被看光」的案例，其实在第一周就能被截住。</p>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+          <div class="article-nav"><a class="prev" href="02-two-step-verification.html">← <span data-content="articles.02-two-step-verification.title">两步验证完整指南：PIN、恢复邮箱与常见坑</span></a><a class="next" href="04-fake-vote-lottery.html"><span data-content="articles.04-fake-vote-lottery.title">假投票、假抽奖、假助力：熟人转发也不能信</span> →</a></div>
+        </div>
+      </article>
+    
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+        </p>
+        <p class="site-footer__note" data-i18n="footer.note"></p>
+      </div>
+      <p class="site-footer__copy" data-i18n="footer.copy" data-i18n-var-year="2026">© <span data-year></span> GuardLine</p>
+    </div>
+  </footer>
+  <script src="../locales.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="../safari-gate.js"></script>
+  <script src="../script.js"></script>
+  <script src="../content-locales.js" defer></script>
+  <script src="../news-meta-locales.js" defer></script>
+  <script>
+    // Apply article/news/tool copy once heavy packs finish (keeps first paint fast).
+    (function () {
+      function refresh() {
+        if (window.ShouhaoI18n && window.SHOUHAO_CONTENT) {
+          window.ShouhaoI18n.applyDom();
+        }
+      }
+      document.querySelectorAll('script[src*="content-locales"],script[src*="news-meta"]').forEach(function (s) {
+        s.addEventListener("load", refresh);
+      });
+      window.addEventListener("load", refresh);
+    })();
+  </script>
+</body>
+</html>

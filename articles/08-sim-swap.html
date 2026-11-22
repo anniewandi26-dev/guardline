@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="号码被转到新卡后，验证码会进攻击者手机。理解运营商侧风险，并学会用两步验证与 SIM PIN 降低伤害。" data-content="articles.08-sim-swap.excerpt" />
+  <title>SIM 卡劫持与换卡攻击：当短信收件箱不再属于你 · GuardLine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../safari-gate.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="brand" href="../home.html" data-i18n="brand.home" data-i18n-attr="aria-label" aria-label="GuardLine home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+      </a>
+      <nav class="nav" data-i18n="nav.aria" data-i18n-attr="aria-label" aria-label="Page navigation">
+        <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden" data-i18n="menu.open">Open menu</span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+      <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+    </div>
+  </header>
+  <main id="main">
+    
+      <article class="article-layout">
+        <p class="eyebrow" data-content="articles.08-sim-swap.category">风险加深</p>
+        <h1 class="article-title" data-content="articles.08-sim-swap.title" data-page-title-content="articles.08-sim-swap.title">SIM 卡劫持与换卡攻击：当短信收件箱不再属于你</h1>
+        <div class="article-meta">
+          <span class="tag" data-i18n="article.of" data-i18n-var-n="8" data-i18n-var-total="30">Article 8 / 30</span>
+          <span data-content="articles.08-sim-swap.read">14 分钟</span>
+        </div>
+        <div class="article-body">
+          <div data-content="articles.08-sim-swap.body" data-content-html>
+<p>SIM swapping（换卡/号卡劫持）属于更重的攻击：对方通过伪造身份、社工话术或 利用运营商流程漏洞，让电信公司把你的号码激活到他们控制的 SIM 上。完成后，你的手机可能突然显示「无服务」，而本该发到你这里的短信 OTP，却在骗子手机里响起。WhatsApp 以手机号为主键，因此这是直指账号主权的打击。</p>
+      <p>若未开启两步验证，对方拿到短信码即可重新注册；即便你开了两步验证，你也会立刻陷入「运营商夺回号码」与「WhatsApp 夺回会话」的双线竞速。高调公众人物长期是目标，但普通用户也可能因经营号、投资群、或单纯通讯录质量被选中。</p>
+
+      <h2>可能出现的征兆</h2>
+      <ul>
+        <li>手机无故长时间无服务，飞行模式开关无效，或提示「未插入 SIM」。</li>
+        <li>突然收不到任何短信，但银行提示异常登录。</li>
+        <li>WhatsApp 提示号码已在其他设备完成注册。</li>
+        <li>亲友收到「你」的借钱消息，而你的手机根本无法打开 WhatsApp。</li>
+        <li>运营商向你发来换卡成功通知，而你并未办理。</li>
+      </ul>
+
+      <h2>第一时间应急（按顺序）</h2>
+      <ol>
+        <li>用另一部手机或固话，拨打运营商官方客服（以官方 App、官网或账单上的渠道为准）申报异常换卡，要求冻结过户与补办 SIM。</li>
+        <li>号码恢复后，立刻在本机重新验证 WhatsApp，并清关联设备。</li>
+        <li>通知银行与支付平台关注异常 OTP 与转账；重设关键账户密码。</li>
+        <li>用短信告知亲友：近期任何 WhatsApp 借钱请求勿信。</li>
+        <li>保留运营商工单、短信记录，必要时向当地警方渠道报案。</li>
+      </ol>
+
+      <h2>日常降风险措施</h2>
+      <ul>
+        <li>向运营商咨询可否设置换卡/过户的额外口令或到厅办理限制。</li>
+        <li>为 SIM 启用 PIN 码，防止实体卡被他人直接插入使用。</li>
+        <li>WhatsApp 必须开启两步验证，并绑定本人邮箱。</li>
+        <li>重要金融账户优先使用 App 令牌、硬件密钥，而不是单靠短信。</li>
+        <li>社交平台上避免公开完整手机号、身份证信息与住址组合。</li>
+      </ul>
+      <div class="callout"><p>换卡攻击针对的是「谁控制短信收件箱」。运营商侧加锁 + WhatsApp 两步验证 + 失联预案，三件套缺一不可。</p></div>
+
+      <h2>夺回后的复盘</h2>
+      <p>确认骗子是否曾在你的号码上完成 WhatsApp 注册、是否群发过诈骗消息。若有，需用其他渠道澄清，并协助已被骗的亲友止付。考虑是否将号码关联的高价值账户暂时加强监控。</p>
+
+      <h2>小结</h2>
+      <p>SIM 劫持把手机号从「联系方式」升级为「安全根」。建立「突然无服务＝最高警报」的条件反射，比事后争夺号码更省时间。</p>
+<h2>与银行、邮箱的联动风险</h2>
+      <p>换卡成功后，攻击者不只盯 WhatsApp，也可能在同一窗口重置银行短信验证、邮箱找回密码。因此在申报运营商的同时，主动致电银行客服说明情况、冻结异常渠道，并检查邮箱异地登录记录。把「手机号失联」视为账户矩阵级事件，而不是单一 App 故障。</p>
+    </div>
+          <div class="article-nav"><a class="prev" href="07-call-merge-otp.html">← <span data-content="articles.07-call-merge-otp.title">合并通话听验证码：别把陌生人并进你的电话</span></a><a class="next" href="09-phishing-sites.html"><span data-content="articles.09-phishing-sites.title">仿冒官网与钓鱼链接：看起来像，也不要点</span> →</a></div>
+        </div>
+      </article>
+    
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+        </p>
+        <p class="site-footer__note" data-i18n="footer.note"></p>
+      </div>
+      <p class="site-footer__copy" data-i18n="footer.copy" data-i18n-var-year="2026">© <span data-year></span> GuardLine</p>
+    </div>
+  </footer>
+  <script src="../locales.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="../safari-gate.js"></script>
+  <script src="../script.js"></script>
+  <script src="../content-locales.js" defer></script>
+  <script src="../news-meta-locales.js" defer></script>
+  <script>
+    // Apply article/news/tool copy once heavy packs finish (keeps first paint fast).
+    (function () {
+      function refresh() {
+        if (window.ShouhaoI18n && window.SHOUHAO_CONTENT) {
+          window.ShouhaoI18n.applyDom();
+        }
+      }
+      document.querySelectorAll('script[src*="content-locales"],script[src*="news-meta"]').forEach(function (s) {
+        s.addEventListener("load", refresh);
+      });
+      window.addEventListener("load", refresh);
+    })();
+  </script>
+</body>
+</html>

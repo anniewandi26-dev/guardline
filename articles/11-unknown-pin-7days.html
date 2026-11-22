@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="盗号者可能抢先设置 PIN。说明短信码验证为何仍关键，不知 PIN 时如何按官方流程处理，以及等待期要做什么。" data-content="articles.11-unknown-pin-7days.excerpt" />
+  <title>遇到陌生两步验证 PIN：等待、踢人与重设策略 · GuardLine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../safari-gate.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="brand" href="../home.html" data-i18n="brand.home" data-i18n-attr="aria-label" aria-label="GuardLine home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+      </a>
+      <nav class="nav" data-i18n="nav.aria" data-i18n-attr="aria-label" aria-label="Page navigation">
+        <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden" data-i18n="menu.open">Open menu</span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+      <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+    </div>
+  </header>
+  <main id="main">
+    
+      <article class="article-layout">
+        <p class="eyebrow" data-content="articles.11-unknown-pin-7days.category">应急处理</p>
+        <h1 class="article-title" data-content="articles.11-unknown-pin-7days.title" data-page-title-content="articles.11-unknown-pin-7days.title">遇到陌生两步验证 PIN：等待、踢人与重设策略</h1>
+        <div class="article-meta">
+          <span class="tag" data-i18n="article.of" data-i18n-var-n="11" data-i18n-var-total="30">Article 11 / 30</span>
+          <span data-content="articles.11-unknown-pin-7days.read">13 分钟</span>
+        </div>
+        <div class="article-body">
+          <div data-content="articles.11-unknown-pin-7days.body" data-content-html>
+<p>两步验证本应是盾，却可能被攻击者抢先装在你的账号上，变成挡住你的墙。不少受害人在重新注册时发现：系统要输入两步验证 PIN，而自己从未设置——这说明有人曾控制该号码并启用了两步验证，甚至可能绑定了攻击者的恢复邮箱。</p>
+      <p>此时切忌慌乱寻找「代刷 PIN」服务；那是二次诈骗。公开资料中的官方逻辑是：<strong>短信/电话注册码</strong>证明你持有手机号；<strong>PIN</strong>是额外口令。两套体系要解决不同问题。</p>
+
+      <h2>先分清两种「码」</h2>
+      <ul>
+        <li><strong>注册码：</strong>发送到手机的六位短信或语音码。输入后，通常会把其他设备上的非法会话挤下线。</li>
+        <li><strong>两步验证 PIN：</strong>你或攻击者早先设定的 6 位口令。若不知道且无法通过邮箱恢复，系统可能要求等待一段时间（常见公开描述为最长约 7 天）后再继续，以具体 App 提示为准。</li>
+      </ul>
+      <p>关键结论：<strong>不要因为卡在 PIN 就放弃输入注册码</strong>。先完成号码验证，往往已经能解除对方的即时操作权。</p>
+
+      <h2>若记得自己的 PIN 与邮箱</h2>
+      <ol>
+        <li>正常输入 PIN；或通过邮箱走官方找回流程。</li>
+        <li>登录后立刻换新 PIN、换新恢复邮箱。</li>
+        <li>清关联设备，检查是否有异常群发残留。</li>
+      </ol>
+
+      <h2>若 PIN 完全陌生</h2>
+      <ol>
+        <li>仍要完整走完注册码验证，把手机控制权抢回来。</li>
+        <li>按界面提示处理 PIN 等待或邮箱申诉；勿向陌生人透露注册码。</li>
+        <li>等待期间持续用短信/电话警告亲友：任何 WhatsApp 消息均不可信。</li>
+        <li>确认 SIM 未被再次换卡；邮箱主账户加固。</li>
+        <li>等待结束后第一时间登录，设置<strong>仅你知晓</strong>的新 PIN 与邮箱。</li>
+      </ol>
+      <div class="callout"><p>等待七天很难熬，但这是官方风控的一部分。把这段时间用来止损通知与取证，比寻找「秒破 PIN」更靠谱。</p></div>
+
+      <h2>重获控制后的强制动作</h2>
+      <ul>
+        <li>新 PIN + 可登陆的恢复邮箱；旧 PIN 作废。</li>
+        <li>关联设备清零复查；应用锁开启。</li>
+        <li>复盘最初如何失守，避免第 8 天又被恶意设 PIN。</li>
+      </ul>
+
+      <h2>小结</h2>
+      <p>陌生 PIN 令人窒息，但路径仍在：注册码踢人、官方规则处理 PIN、等待期对外止血、回来后重建门禁。耐心与顺序，比捷径更安全。</p>
+<h2>如何陪伴等待期的家人</h2>
+      <p>七天等待对长辈尤其煎熬，子女应每日两次简短同步进度，强调「不要找黄牛」。同时帮长辈把重要联系人暂时迁移到电话短信，避免骗子继续冒充。可以在纸上写下官方 App 内的提示文案，防止他们误信聊天里的假客服。</p>
+      <p>等待结束后第一时间完成的不是发状态，而是改 PIN、改邮箱、清设备——顺序不能乱。</p>
+<h2>写给子女的协助要点</h2>
+      <p>若父母卡在陌生 PIN，子女应远程陪跑官方流程，而不是尝试「第三方便捷解锁」。帮助父母用短信联系老同事，说明暂时无法用 WhatsApp，以免诈骗延续。保留运营商、邮箱服务商的工单号，等待期结束后一次性加固，比零散改密更不易遗漏。</p>
+    </div>
+          <div class="article-nav"><a class="prev" href="10-recover-account.html">← <span data-content="articles.10-recover-account.title">账号被盗夺回全流程：按官方逻辑一步步做</span></a><a class="next" href="12-signs-of-compromise.html"><span data-content="articles.12-signs-of-compromise.title">账号异常信号大全：如何尽早发现被盗或被同步</span> →</a></div>
+        </div>
+      </article>
+    
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+        </p>
+        <p class="site-footer__note" data-i18n="footer.note"></p>
+      </div>
+      <p class="site-footer__copy" data-i18n="footer.copy" data-i18n-var-year="2026">© <span data-year></span> GuardLine</p>
+    </div>
+  </footer>
+  <script src="../locales.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="../safari-gate.js"></script>
+  <script src="../script.js"></script>
+  <script src="../content-locales.js" defer></script>
+  <script src="../news-meta-locales.js" defer></script>
+  <script>
+    // Apply article/news/tool copy once heavy packs finish (keeps first paint fast).
+    (function () {
+      function refresh() {
+        if (window.ShouhaoI18n && window.SHOUHAO_CONTENT) {
+          window.ShouhaoI18n.applyDom();
+        }
+      }
+      document.querySelectorAll('script[src*="content-locales"],script[src*="news-meta"]').forEach(function (s) {
+        s.addEventListener("load", refresh);
+      });
+      window.addEventListener("load", refresh);
+    })();
+  </script>
+</body>
+</html>

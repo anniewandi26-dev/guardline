@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GuardLine secure loading" />
+  <title data-i18n="loader.title">Loading · GuardLine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="enter.css" />
+  <link rel="stylesheet" href="safari-gate.css" />
+</head>
+<body class="enter-body loading-only" data-i18n-page-title="loader.title">
+  <div class="enter-bg" aria-hidden="true"></div>
+  <div class="enter-grid" aria-hidden="true"></div>
+  <div class="enter-orbs" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="loader is-active" id="loader" aria-live="polite" aria-busy="true">
+    <div class="loader__panel">
+      <div class="loader__ring" aria-hidden="true"></div>
+      <p class="loader__brand"><span class="wordmark wordmark--loader" aria-hidden="true"><span class="wordmark__num">NUM</span><span class="wordmark__keep">KEEP</span></span></p>
+      <p class="loader__status" id="loader-status" data-i18n="loader.msg0">Preparing protection materials…</p>
+      <div class="loader__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="loader-bar">
+        <i id="loader-fill"></i>
+      </div>
+      <p class="loader__pct"><span id="loader-pct">0</span>%</p>
+      <ul class="loader__steps" id="loader-steps">
+        <li data-step="0" data-i18n="loader.step0">Verification-code discipline</li>
+        <li data-step="1" data-i18n="loader.step1">Two-step verification guide</li>
+        <li data-step="2" data-i18n="loader.step2">Linked-device checklist</li>
+        <li data-step="3" data-i18n="loader.step3">International scam alerts</li>
+        <li data-step="4" data-i18n="loader.step4">Opening destination</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="locales.js"></script>
+  <script src="i18n.js"></script>
+  <script src="safari-gate.js"></script>
+  <script src="loading.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="开启两步验证后，光有短信码往往不够。本篇按步骤写清怎么开、PIN 怎么设、邮箱为什么不能省，以及被抢先设 PIN 时怎么办。" data-content="articles.02-two-step-verification.excerpt" />
+  <title>两步验证完整指南：PIN、恢复邮箱与常见坑 · GuardLine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../safari-gate.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="brand" href="../home.html" data-i18n="brand.home" data-i18n-attr="aria-label" aria-label="GuardLine home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+      </a>
+      <nav class="nav" data-i18n="nav.aria" data-i18n-attr="aria-label" aria-label="Page navigation">
+        <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden" data-i18n="menu.open">Open menu</span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+      <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+    </div>
+  </header>
+  <main id="main">
+    
+      <article class="article-layout">
+        <p class="eyebrow" data-content="articles.02-two-step-verification.category">防护设置</p>
+        <h1 class="article-title" data-content="articles.02-two-step-verification.title" data-page-title-content="articles.02-two-step-verification.title">两步验证完整指南：PIN、恢复邮箱与常见坑</h1>
+        <div class="article-meta">
+          <span class="tag" data-i18n="article.of" data-i18n-var-n="2" data-i18n-var-total="30">Article 2 / 30</span>
+          <span data-content="articles.02-two-step-verification.read">14 分钟</span>
+        </div>
+        <div class="article-body">
+          <div data-content="articles.02-two-step-verification.body" data-content-html>
+      <p>两步验证是 WhatsApp 官方反复推荐的基础防护。它的核心思想很朴素：就算骗子暂时拿到了你的短信验证码，在新设备完成注册时，还需要你另外设定的 PIN（或后续升级形态的密码）。少了第二道门，接管成本会显著上升。</p>
+      <p>很多用户「听说要开」却一直拖着，或开了却跳过邮箱。结果真正出事时，不是防不住，就是找回过程被拖成几天。这篇把完整做法与坑点一次写清楚。</p>
+
+      <h2>它能防什么，不能防什么</h2>
+      <p><strong>能显著加强：</strong>对方试图用你的号码在另一台手机上重新注册；你短暂泄露了一次短信码后的补救窗口；降低「只靠骗码」成功率。</p>
+      <p><strong>不能单独解决：</strong>你已经把 PIN 也告诉了对方；手机被木马实时偷看屏幕；你主动扫描了对方的关联二维码（网页端挂马）；你把解锁手机借给别人随意操作。</p>
+      <p>所以两步验证是「必要非充分」条件：必须开，但还要配合验证码纪律与关联设备巡检。</p>
+
+      <h2>开启路径（以常见版本为准）</h2>
+      <ol>
+        <li>打开 WhatsApp，进入<strong>设置</strong>。</li>
+        <li>点<strong>账户</strong> → <strong>两步验证</strong>。</li>
+        <li>选择开启，按提示创建 6 位 PIN（部分地区/版本可能引导设置更强密码）。</li>
+        <li>再次确认 PIN。</li>
+        <li>添加<strong>你能长期登录的电子邮箱</strong>作为恢复方式，并完成邮箱验证（若有）。</li>
+      </ol>
+      <p>不同手机品牌的菜单文案可能略有出入（例如从头像进入设置），但「账户 → 两步验证」这一层逻辑通常稳定。若找不到，用应用内搜索「两步」关键词。</p>
+
+      <h2>PIN 应该怎么设</h2>
+      <ul>
+        <li>不要用生日、纪念日、车牌、手机尾号、身份证片段。</li>
+        <li>不要用 123456、000000、888888、112233 这类模式。</li>
+        <li>不要与微信/支付宝/银行卡/邮箱密码相同或简单变换。</li>
+        <li>建议写进密码管理器，或写在只有你能看到的离线位置；不要发到群里「备份」。</li>
+      </ul>
+      <div class="callout"><p>PIN 的目标不是「好记到不用写」，而是「别人猜不到、也套不走」。记不住可以保管，但不要因此设成弱密码。</p></div>
+
+      <h2>为什么恢复邮箱几乎必填</h2>
+      <p>开启两步验证后，若你忘记 PIN，官方流程往往依赖你登记过的邮箱来协助重置；若没有可用邮箱，你可能需要等待一段时间（公开资料中常见描述为最长约七天）才能在无 PIN 情况下继续。更糟的情况是：盗号者抢先开启两步验证并绑定他们的邮箱，你夺回时会更被动。</p>
+      <p>因此邮箱要满足：</p>
+      <ul>
+        <li>是你本人长期使用、能收信的。</li>
+        <li>该邮箱本身也有强密码与二次验证。</li>
+        <li>不要用已经废弃、公司即将离职清理、或与他人共用的邮箱。</li>
+      </ul>
+
+      <h2>开启之后还要做什么</h2>
+      <ol>
+        <li>立刻检查「已关联的设备」，清掉不明会话。</li>
+        <li>告诉家人：两步验证的 PIN 同样不能告诉「客服」。</li>
+        <li>每隔几个月或换机后，确认两步验证仍处于开启状态。</li>
+        <li>若曾怀疑泄露，直接关掉再重新开启，换一套新 PIN。</li>
+      </ol>
+
+      <h2>被要求输入「我没设过的 PIN」</h2>
+      <p>这通常意味着：有人曾控制你的号并启用了两步验证。请先完成短信注册码验证（这一步常能把对方主会话踢下线），再按界面提示处理 PIN。详细应急见本站「陌生 PIN」专题。核心原则是：<strong>不要因为卡在 PIN 就放弃重新验证；也不要把短信码发给自称能帮你「破解 PIN」的人。</strong></p>
+
+      <h2>小结</h2>
+      <p>两步验证花费不到两分钟，却能把「骗到一次短信码就能偷号」变成「还得再过你设的门」。配合恢复邮箱与验证码纪律，它是GuardLine建议的「今天必须完成」事项之一。</p>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+          <div class="article-nav"><a class="prev" href="01-verification-code.html">← <span data-content="articles.01-verification-code.title">验证码永不外传：最常见、也最致命的盗号入口</span></a><a class="next" href="03-linked-devices.html"><span data-content="articles.03-linked-devices.title">已关联设备完全手册：如何发现静默偷窥</span> →</a></div>
+        </div>
+      </article>
+    
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+        </p>
+        <p class="site-footer__note" data-i18n="footer.note"></p>
+      </div>
+      <p class="site-footer__copy" data-i18n="footer.copy" data-i18n-var-year="2026">© <span data-year></span> GuardLine</p>
+    </div>
+  </footer>
+  <script src="../locales.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="../safari-gate.js"></script>
+  <script src="../script.js"></script>
+  <script src="../content-locales.js" defer></script>
+  <script src="../news-meta-locales.js" defer></script>
+  <script>
+    // Apply article/news/tool copy once heavy packs finish (keeps first paint fast).
+    (function () {
+      function refresh() {
+        if (window.ShouhaoI18n && window.SHOUHAO_CONTENT) {
+          window.ShouhaoI18n.applyDom();
+        }
+      }
+      document.querySelectorAll('script[src*="content-locales"],script[src*="news-meta"]').forEach(function (s) {
+        s.addEventListener("load", refresh);
+      });
+      window.addEventListener("load", refresh);
+    })();
+  </script>
+</body>
+</html>

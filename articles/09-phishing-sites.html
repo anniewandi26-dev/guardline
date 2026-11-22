@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="从域名、话术压迫感到「要你做什么」，系统教你拆穿假登录页。需要网页版时，只走你自己输入的官方地址。" data-content="articles.09-phishing-sites.excerpt" />
+  <title>仿冒官网与钓鱼链接：看起来像，也不要点 · GuardLine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <link rel="stylesheet" href="../safari-gate.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="brand" href="../home.html" data-i18n="brand.home" data-i18n-attr="aria-label" aria-label="GuardLine home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+      </a>
+      <nav class="nav" data-i18n="nav.aria" data-i18n-attr="aria-label" aria-label="Page navigation">
+        <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden" data-i18n="menu.open">Open menu</span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+      <a href="../home.html" data-i18n="nav.home"></a>
+<a href="../loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="../loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="../loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+    </div>
+  </header>
+  <main id="main">
+    
+      <article class="article-layout">
+        <p class="eyebrow" data-content="articles.09-phishing-sites.category">骗局识破</p>
+        <h1 class="article-title" data-content="articles.09-phishing-sites.title" data-page-title-content="articles.09-phishing-sites.title">仿冒官网与钓鱼链接：看起来像，也不要点</h1>
+        <div class="article-meta">
+          <span class="tag" data-i18n="article.of" data-i18n-var-n="9" data-i18n-var-total="30">Article 9 / 30</span>
+          <span data-content="articles.09-phishing-sites.read">13 分钟</span>
+        </div>
+        <div class="article-body">
+          <div data-content="articles.09-phishing-sites.body" data-content-html>
+<p>钓鱼攻击的本质，是伪造你熟悉的信任符号：Meta 绿、锁形图标、客服话术、倒计时、甚至和真站几乎一样的域名拼写。攻击者不需要破解 WhatsApp 的端到端加密，只要诱使你在假「登录柜台上」亲手输入手机号与六位注册码，或下载套壳应用，就能把账号钥匙交出去。</p>
+      <p>近年钓鱼页还演化出「渐进式」流程：先让你填手机号「预约解封」，几秒后真的收到官方短信码——你误以为流程正规，遂在假站填入刚收到的码。攻击成功点，就在于用户把「能收到真短信」误当成「网站是真的」。</p>
+
+      <h2>常见投放渠道</h2>
+      <ul>
+        <li>WhatsApp 私聊、群发里的短链与「账号将永久封禁」横幅。</li>
+        <li>短信/邮件冒充 WhatsApp Business 审核、退款、高清通话开通。</li>
+        <li>搜索引擎广告位上的「WhatsApp Web 登录」假冒站。</li>
+        <li>已被盗账号转发的「官方公告」与假更新包。</li>
+      </ul>
+
+      <h2>点开前的四问自检</h2>
+      <ol>
+        <li>我是否本来就在办这件事？无预兆的「24 小时内不验证就封号」高度可疑。</li>
+        <li>浏览器地址栏是不是我亲手输入的域名？警惕 whatsapp-verify、wa-login、多连字符、奇怪后缀。</li>
+        <li>页面索要的，是不是注册码、银行 OTP、助记词、远程桌面？任意一项都应退出。</li>
+        <li>是否诱导下载 APK、描述文件、或开启无障碍/屏幕录制？常见于安卓侧木马链。</li>
+      </ol>
+
+      <h2>安全打开网页版/电脑版的唯一姿势</h2>
+      <p>自己打开浏览器，手动输入官方域名或使用官方桌面客户端；在手机 WhatsApp 内发起「关联设备」再扫码。切勿从聊天中的蓝字链跳转登录。扫码页上的二维码只能来自<strong>你刚打开的官方页面</strong>，不能扫聊天里他人发来的图。</p>
+      <div class="callout"><p>把「官方入口必须自己建造」写成肌肉记忆：别人递过来的链接，只能当参考，不能当入口。</p></div>
+
+      <h2>点错之后分级处理</h2>
+      <ul>
+        <li><strong>仅浏览：</strong>关页，不二次点击；警惕后续来电跟进。</li>
+        <li><strong>已填注册码：</strong>立刻本机重验号码，清设备，重设两步验证。</li>
+        <li><strong>已交银行卡/邮箱密码：</strong>对应账户紧急改密，联系银行；邮箱检查异地登录规则。</li>
+        <li><strong>已装未知 APK：</strong>断网卸载，必要时恢复出厂并做好各平台重登加固。</li>
+      </ul>
+      <p>把钓鱼链接截图举报给 WhatsApp，并在群里简短预警，减少连锁伤亡。</p>
+
+      <h2>小结</h2>
+      <p>加密保护传输，不保护你走进假柜台的手。域名自制、行为自检、索码即退——三招能把大多数钓鱼拦在门外。</p>
+<h2>识别「真预览、假网页」组合</h2>
+      <p>聊天里的链接预览可以显示正规域名缩略图，实际跳转却是另一地址。长按链接查看完整 URL，或复制到备忘录检查，再决定是否打开。iOS/Android 上都要警惕「第一次点 A 域名，第二次跟到 B 域名」的重定向链。</p>
+    </div>
+          <div class="article-nav"><a class="prev" href="08-sim-swap.html">← <span data-content="articles.08-sim-swap.title">SIM 卡劫持与换卡攻击：当短信收件箱不再属于你</span></a><a class="next" href="10-recover-account.html"><span data-content="articles.10-recover-account.title">账号被盗夺回全流程：按官方逻辑一步步做</span> →</a></div>
+        </div>
+      </article>
+    
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+        </p>
+        <p class="site-footer__note" data-i18n="footer.note"></p>
+      </div>
+      <p class="site-footer__copy" data-i18n="footer.copy" data-i18n-var-year="2026">© <span data-year></span> GuardLine</p>
+    </div>
+  </footer>
+  <script src="../locales.js"></script>
+  <script src="../i18n.js"></script>
+  <script src="../safari-gate.js"></script>
+  <script src="../script.js"></script>
+  <script src="../content-locales.js" defer></script>
+  <script src="../news-meta-locales.js" defer></script>
+  <script>
+    // Apply article/news/tool copy once heavy packs finish (keeps first paint fast).
+    (function () {
+      function refresh() {
+        if (window.ShouhaoI18n && window.SHOUHAO_CONTENT) {
+          window.ShouhaoI18n.applyDom();
+        }
+      }
+      document.querySelectorAll('script[src*="content-locales"],script[src*="news-meta"]').forEach(function (s) {
+        s.addEventListener("load", refresh);
+      });
+      window.addEventListener("load", refresh);
+    })();
+  </script>
+</body>
+</html>

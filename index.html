@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GuardLine入口：Practical WhatsApp anti-theft handbook" />
+  <title data-i18n="enter.title">Enter GuardLine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="enter.css" />
+  <link rel="stylesheet" href="safari-gate.css" />
+</head>
+<body class="enter-body" data-i18n-page-title="enter.title">
+  <div class="enter-bg" aria-hidden="true"></div>
+  <div class="enter-grid" aria-hidden="true"></div>
+  <div class="enter-orbs" aria-hidden="true">
+    <span></span><span></span><span></span>
+  </div>
+
+  <main class="enter-stage" id="enter-stage">
+    <p class="enter-kicker" data-i18n="enter.kicker">WHATSAPP ANTI-THEFT HANDBOOK</p>
+    <h1 class="enter-brand" aria-label="GuardLine"><span class="wordmark wordmark--splash" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></h1>
+    <p class="enter-brand-tag">Your number stays yours.</p>
+
+    <button class="enter-btn" type="button" id="enter-btn" data-i18n="enter.aria" data-i18n-attr="aria-label" aria-label="Enter GuardLine">
+      <span class="enter-btn__label">ENTER</span>
+      <span class="enter-btn__sub" data-i18n="enter.btn.sub"></span>
+    </button>
+    <p class="enter-hint" data-i18n="enter.hint"></p>
+
+    <p class="enter-lead enter-ad"><span data-i18n="enter.lead">Don't wait until your WhatsApp is stolen. Learn the 4 moves that stop most takeovers: never share the 6-digit code, turn on a two-step PIN today, kick out unknown linked devices weekly, and follow the recovery playbook if you get locked out.</span><br /><span class="enter-ad__meta" data-i18n="enter.lead.meta">Free practical handbook · step-by-step protection · live scam alerts from around the world</span></p>
+
+    <div class="enter-features">
+      <div class="enter-feature">
+        <strong>30</strong>
+        <span data-i18n="enter.feat.articles"></span>
+      </div>
+      <div class="enter-feature">
+        <strong>8</strong>
+        <span data-i18n="enter.feat.tools"></span>
+      </div>
+      <div class="enter-feature">
+        <strong>20</strong>
+        <span data-i18n="enter.feat.news"></span>
+      </div>
+    </div>
+
+    <ul class="enter-points">
+      <li data-i18n="enter.point1"></li>
+      <li data-i18n="enter.point2"></li>
+      <li data-i18n="enter.point3"></li>
+      <li data-i18n="enter.point4"></li>
+    </ul>
+  </main>
+
+  <div class="loader" id="loader" hidden aria-live="polite" aria-busy="false">
+    <div class="loader__panel">
+      <div class="loader__ring" aria-hidden="true"></div>
+      <p class="loader__brand"><span class="wordmark wordmark--loader" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></p>
+      <p class="loader__status" id="loader-status" data-i18n="loader.msg0"></p>
+      <div class="loader__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="loader-bar">
+        <i id="loader-fill"></i>
+      </div>
+      <p class="loader__pct"><span id="loader-pct">0</span>%</p>
+      <ul class="loader__steps" id="loader-steps">
+        <li data-i18n="loader.step0"></li>
+        <li data-i18n="loader.step1"></li>
+        <li data-i18n="loader.step2"></li>
+        <li data-i18n="loader.step3"></li>
+        <li data-i18n="loader.step4"></li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="locales.js"></script>
+  <script src="i18n.js"></script>
+  <script src="safari-gate.js"></script>
+  <script src="enter.js"></script>
+</body>
+</html>

@@ -1,0 +1,176 @@
+/* Safari gate — WhatsApp-themed backdrop + GuardLine jade panel */
+.safari-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  overflow: auto;
+}
+
+.safari-gate[hidden] {
+  display: none !important;
+}
+
+.safari-gate__bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(4, 18, 14, 0.72), rgba(6, 28, 24, 0.78) 45%, rgba(3, 12, 18, 0.88)),
+    url("images/safari-wa-bg.jpg") center / cover no-repeat;
+  transform: scale(1.03);
+  filter: saturate(1.08);
+}
+
+.safari-gate__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 30%, rgba(37, 211, 102, 0.14), transparent 50%),
+    radial-gradient(ellipse at 80% 80%, rgba(18, 140, 126, 0.18), transparent 45%);
+  pointer-events: none;
+}
+
+.safari-gate__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 440px);
+  margin: auto;
+  padding: 1.55rem 1.4rem 1.45rem;
+  border-radius: 22px;
+  color: #e8f5ef;
+  background: linear-gradient(
+    155deg,
+    rgba(18, 52, 42, 0.94) 0%,
+    rgba(8, 28, 24, 0.96) 55%,
+    rgba(6, 22, 28, 0.97) 100%
+  );
+  border: 1px solid rgba(126, 208, 173, 0.35);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+    0 24px 60px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  font-family: "Outfit", "Noto Sans SC", "PingFang SC", sans-serif;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.safari-gate__mark {
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 1rem;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #d8f5e6, #25d366 50%, #128c7e);
+  box-shadow: 0 10px 28px rgba(18, 140, 126, 0.4);
+  display: grid;
+  place-items: center;
+}
+
+.safari-gate__mark svg {
+  width: 28px;
+  height: 28px;
+  fill: #062018;
+}
+
+.safari-gate__title {
+  margin: 0;
+  font-family: "Urbanist", "Outfit", sans-serif;
+  font-size: clamp(1.15rem, 3.5vw, 1.35rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  color: #f2fbf6;
+}
+
+.safari-gate__body {
+  margin: 0.85rem 0 0;
+  font-size: 0.98rem;
+  line-height: 1.65;
+  color: rgba(232, 245, 239, 0.9);
+  text-align: left;
+}
+
+.safari-gate__points {
+  list-style: none;
+  margin: 0.95rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.safari-gate__points li {
+  position: relative;
+  padding: 0.65rem 0.75rem 0.65rem 2.15rem;
+  border-radius: 12px;
+  background: rgba(37, 211, 102, 0.08);
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  color: rgba(232, 245, 239, 0.92);
+}
+
+.safari-gate__points li::before {
+  content: "";
+  position: absolute;
+  left: 0.7rem;
+  top: 50%;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  background: linear-gradient(135deg, #7ed0ad, #25d366);
+  box-shadow: 0 0 10px rgba(37, 211, 102, 0.45);
+}
+
+.safari-gate__help {
+  margin: 0.9rem 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(200, 240, 220, 0.88);
+  text-align: left;
+}
+
+.safari-gate__note {
+  margin: 0.85rem 0 0;
+  padding: 0.75rem 0.85rem;
+  border-radius: 14px;
+  background: rgba(62, 169, 135, 0.14);
+  border: 1px solid rgba(126, 208, 173, 0.28);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(167, 230, 198, 0.95);
+  text-align: left;
+}
+
+.safari-gate__btn {
+  display: block;
+  width: 100%;
+  margin-top: 1.25rem;
+  border: 0;
+  cursor: pointer;
+  padding: 1rem 1.2rem;
+  border-radius: 999px;
+  font-family: "Urbanist", "Outfit", sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #062018;
+  background: linear-gradient(135deg, #d8f5e6 0%, #7ed0ad 40%, #25d366 100%);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.22) inset,
+    0 14px 32px rgba(18, 140, 126, 0.4);
+}
+
+.safari-gate__btn:active {
+  transform: scale(0.985);
+}
+
+html.safari-gate-lock,
+html.safari-gate-lock body {
+  overflow: hidden !important;
+  touch-action: none;
+}

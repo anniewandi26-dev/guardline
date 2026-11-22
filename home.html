@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="GuardLine整理 30 篇 WhatsApp 防盗完整长文：验证码、两步验证、关联设备、夺回账号、家庭防护与常见骗术。" data-i18n="home.desc" />
+  <title data-i18n="home.title">GuardLine · Practical WhatsApp anti-theft handbook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./safari-gate.css" />
+</head>
+<body data-i18n-page-title="home.title">
+  <a class="skip-link" href="#main" data-i18n="skip">Skip to content</a>
+  <header class="site-header" data-header>
+    <div class="site-header__inner">
+      <a class="brand" href="./home.html" data-i18n="brand.home" data-i18n-attr="aria-label" aria-label="GuardLine home">
+        <span class="brand__mark" aria-hidden="true"></span>
+        <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+      </a>
+      <nav class="nav" data-i18n="nav.aria" data-i18n-attr="aria-label" aria-label="Page navigation">
+        <a href="./home.html" data-i18n="nav.home"></a>
+<a href="./loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="./loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="./loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" data-nav-toggle>
+        <span class="nav-toggle__bars" aria-hidden="true"></span>
+        <span class="visually-hidden" data-i18n="menu.open">Open menu</span>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
+      <a href="./home.html" data-i18n="nav.home"></a>
+<a href="./loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.articles"></a>
+<a href="./loading.html#tools.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.tools"></a>
+<a href="./loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="nav.news"></a>
+    </div>
+  </header>
+  <main id="main">
+    
+    <section class="hero" id="top">
+      <div class="hero__atmosphere" aria-hidden="true"></div>
+      <div class="hero__grid">
+        <div class="hero__copy">
+          <p class="hero__brand"><span class="wordmark wordmark--hero-light" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></p>
+          <h1 data-i18n="home.h1">Keep WhatsApp in your own hands</h1>
+          <p class="hero__lead" data-i18n="home.lead"></p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="./loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="home.cta.articles">Read all 30 articles</a>
+            <a class="btn btn--ghost" href="./loading.html#home.html%23paths" target="_blank" rel="noopener noreferrer" data-i18n="home.cta.paths">Pick a protection path</a>
+          </div>
+        </div>
+        <div class="hero__visual" aria-hidden="true">
+          <div class="phone-stage">
+            <div class="phone-stage__glow"></div>
+            <div class="phone">
+              <div class="phone__notch"></div>
+              <div class="phone__screen">
+                <div class="phone__status"><span data-i18n="phone.status">Security status</span><strong data-i18n="phone.ok">Hardened</strong></div>
+                <ul class="phone__checks">
+                  <li class="is-on" data-i18n="phone.check1">Two-step verification</li>
+                  <li class="is-on" data-i18n="phone.check2">Codes kept private</li>
+                  <li class="is-on" data-i18n="phone.check3">Linked devices cleared</li>
+                  <li data-i18n="phone.check4">App kept updated</li>
+                </ul>
+                <div class="phone__meter"><span data-i18n="phone.meter">Protection completeness</span><div class="phone__bar"><i style="--w: 86%"></i></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--pulse" data-reveal>
+      <div class="section__inner">
+        <div class="pulse-strip">
+          <a class="pulse-item" href="news.html">
+            <strong class="pulse-item__num" data-count="128">0</strong>
+            <p class="pulse-item__label" data-i18n="pulse.sg"></p>
+            <p class="pulse-item__note" data-i18n="pulse.sg.note"></p>
+          </a>
+          <a class="pulse-item" href="news.html">
+            <strong class="pulse-item__num" data-count="50" data-suffix="+">0</strong>
+            <p class="pulse-item__label" data-i18n="pulse.ch"></p>
+            <p class="pulse-item__note" data-i18n="pulse.ch.note"></p>
+          </a>
+          <a class="pulse-item" href="news.html">
+            <strong class="pulse-item__num" data-count="90" data-suffix="%">0</strong>
+            <p class="pulse-item__label" data-i18n="pulse.hk"></p>
+            <p class="pulse-item__note" data-i18n="pulse.hk.note"></p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--paths" id="paths" data-reveal>
+      <div class="section__inner">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="paths.eyebrow"></p>
+          <h2 data-i18n="paths.h2"></h2>
+          <p data-i18n="paths.lead"></p>
+        </header>
+        <div class="path-grid">
+          <a class="path-card" href="articles/01-verification-code.html">
+            <span class="path-card__index">PATH 01</span>
+            <h3 data-i18n="path1.title"></h3>
+            <p data-i18n="path1.lead"></p>
+            <ul class="path-card__links">
+              <li data-i18n="path1.a"></li>
+              <li data-i18n="path1.b"></li>
+              <li data-i18n="path1.c"></li>
+            </ul>
+          </a>
+          <a class="path-card" href="articles/10-recover-account.html">
+            <span class="path-card__index">PATH 02</span>
+            <h3 data-i18n="path2.title"></h3>
+            <p data-i18n="path2.lead"></p>
+            <ul class="path-card__links">
+              <li data-i18n="path2.a"></li>
+              <li data-i18n="path2.b"></li>
+              <li data-i18n="path2.c"></li>
+            </ul>
+          </a>
+          <a class="path-card" href="articles/19-family-elders.html">
+            <span class="path-card__index">PATH 03</span>
+            <h3 data-i18n="path3.title"></h3>
+            <p data-i18n="path3.lead"></p>
+            <ul class="path-card__links">
+              <li data-i18n="path3.a"></li>
+              <li data-i18n="path3.b"></li>
+              <li data-i18n="path3.c"></li>
+            </ul>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--articles" id="topics" data-reveal>
+      <div class="section__inner">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="topics.eyebrow"></p>
+          <h2 data-i18n="topics.h2"></h2>
+          <p data-i18n="topics.lead"></p>
+        </header>
+        <div class="topic-grid">
+    <a class="topic-card" href="articles/01-verification-code.html">
+      <span class="topic-card__num">01</span>
+      <h3 data-content="articles.01-verification-code.title">验证码永不外传：最常见、也最致命的盗号入口</h3>
+      <p data-content="articles.01-verification-code.excerpt">六位注册码等于账号钥匙。熟人要码、假客服催码、钓鱼站填码——本质都是同一把刀。本文把话术、原理与拒绝话术一次讲透。</p>
+      <span class="article-card__more" data-i18n="read.more">Read full article</span>
+    </a>
+    <a class="topic-card" href="articles/02-two-step-verification.html">
+      <span class="topic-card__num">02</span>
+      <h3 data-content="articles.02-two-step-verification.title">两步验证完整指南：PIN、恢复邮箱与常见坑</h3>
+      <p data-content="articles.02-two-step-verification.excerpt">开启两步验证后，光有短信码往往不够。本篇按步骤写清怎么开、PIN 怎么设、邮箱为什么不能省，以及被抢先设 PIN 时怎么办。</p>
+      <span class="article-card__more" data-i18n="read.more">Read full article</span>
+    </a>
+    <a class="topic-card" href="articles/03-linked-devices.html">
+      <span class="topic-card__num">03</span>
+      <h3 data-content="articles.03-linked-devices.title">已关联设备完全手册：如何发现静默偷窥</h3>
+      <p data-content="articles.03-linked-devices.excerpt">手机还能正常聊天，不代表没有第二双眼睛。网页版/电脑版一旦被挂上，对方可实时同步。教你检查、踢人、以及怎样避免再次中招。</p>
+      <span class="article-card__more" data-i18n="read.more">Read full article</span>
+    </a>
+    <a class="topic-card" href="articles/04-fake-vote-lottery.html">
+      <span class="topic-card__num">04</span>
+      <h3 data-content="articles.04-fake-vote-lottery.title">假投票、假抽奖、假助力：熟人转发也不能信</h3>
+      <p data-content="articles.04-fake-vote-lottery.excerpt">「帮我女儿投一票」常常来自已被盗的账号。假站要短信码或诱导扫关联码，是近年增长很快的接管手法。</p>
+      <span class="article-card__more" data-i18n="read.more">Read full article</span>
+    </a>
+    <a class="topic-card" href="articles/05-chain-takeover.html">
+      <span class="topic-card__num">05</span>
+      <h3 data-content="articles.05-chain-takeover.title">熟人连环骗码：通讯录如何变成传播链</h3>
+      <p data-content="articles.05-chain-takeover.excerpt">一个号失守，往往带着整本通讯录一起失火。拆解连环接管的传播机制，以及如何在第二环就切断。</p>
+      <span class="article-card__more" data-i18n="read.more">Read full article</span>
+    </a>
+    <a class="topic-card" href="articles/06-screen-share-scam.html">
+      <span class="topic-card__num">06</span>
+      <h3 data-content="articles.06-screen-share-scam.title">屏幕共享盗号：视频通话里的隔空取码</h3>
+      <p data-content="articles.06-screen-share-scam.excerpt">假冒官员或银行人员要求共享屏幕，再让验证码出现在你的画面上。你没有「发送」数字，码却已经被看走。</p>
+      <span class="article-card__more" data-i18n="read.more">Read full article</span>
+    </a></div>
+        <p style="margin-top:1.5rem"><a class="btn btn--primary" href="./loading.html#articles.html" target="_blank" rel="noopener noreferrer" data-i18n="view.all.articles"></a></p>
+      </div>
+    </section>
+
+    <section class="section" id="tricks" data-reveal>
+      <div class="section__inner">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="threats.eyebrow"></p>
+          <h2 data-i18n="threats.h2"></h2>
+          <p data-i18n="threats.lead"></p>
+        </header>
+        <div class="trick-list">
+          <article class="trick"><span class="trick__num">01</span><div><h3 data-i18n="threat1.title"></h3><p data-i18n="threat1.lead"></p></div></article>
+          <article class="trick"><span class="trick__num">02</span><div><h3 data-i18n="threat2.title"></h3><p data-i18n="threat2.lead"></p></div></article>
+          <article class="trick"><span class="trick__num">03</span><div><h3 data-i18n="threat3.title"></h3><p data-i18n="threat3.lead"></p></div></article>
+          <article class="trick"><span class="trick__num">04</span><div><h3 data-i18n="threat4.title"></h3><p data-i18n="threat4.lead"></p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sos" data-reveal>
+      <div class="section__inner">
+        <div class="sos-strip">
+          <div>
+            <p class="eyebrow" data-i18n="sos.eyebrow"></p>
+            <h2 data-i18n="sos.h2"></h2>
+            <p data-i18n="sos.lead"></p>
+            <a class="btn btn--primary" href="articles/10-recover-account.html" data-i18n="sos.cta"></a>
+          </div>
+          <ol class="sos-steps">
+            <li><span>1</span><p data-i18n="sos.1"></p></li>
+            <li><span>2</span><p data-i18n="sos.2"></p></li>
+            <li><span>3</span><p data-i18n="sos.3"></p></li>
+            <li><span>4</span><p data-i18n="sos.4"></p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--protect" id="protect" data-reveal>
+      <div class="section__inner">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="lock.eyebrow"></p>
+          <h2 data-i18n="lock.h2"></h2>
+          <p data-i18n="lock.lead"></p>
+        </header>
+        <ol class="steps">
+          <li class="step"><div class="step__index">1</div><div class="step__body"><h3 data-i18n="lock.1.title"></h3><p data-i18n="lock.1.lead"></p></div></li>
+          <li class="step"><div class="step__index">2</div><div class="step__body"><h3 data-i18n="lock.2.title"></h3><p data-i18n="lock.2.lead"></p></div></li>
+          <li class="step"><div class="step__index">3</div><div class="step__body"><h3 data-i18n="lock.3.title"></h3><p data-i18n="lock.3.lead"></p></div></li>
+          <li class="step"><div class="step__index">4</div><div class="step__body"><h3 data-i18n="lock.4.title"></h3><p data-i18n="lock.4.lead"></p></div></li>
+          <li class="step"><div class="step__index">5</div><div class="step__body"><h3 data-i18n="lock.5.title"></h3><p data-i18n="lock.5.lead"></p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section section--habits" id="habits" data-reveal>
+      <div class="section__inner">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="check.eyebrow"></p>
+          <h2 data-i18n="check.h2"></h2>
+          <p data-i18n="check.lead"></p>
+        </header>
+        <div class="checklist-panel" data-checklist>
+          <div class="checklist-progress" aria-live="polite">
+            <div class="checklist-progress__meta">
+              <span data-progress-label data-i18n="check.progress" data-i18n-var-done="0" data-i18n-var-total="8">Done 0 / 8</span>
+              <strong data-progress-pct>0%</strong>
+            </div>
+            <div class="checklist-progress__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" data-progress-bar>
+              <span data-progress-fill></span>
+            </div>
+          </div>
+          <ul class="checklist">
+            <li><label><input type="checkbox" data-check value="2fa" /><span data-i18n="check.1"></span></label></li>
+            <li><label><input type="checkbox" data-check value="no-code" /><span data-i18n="check.2"></span></label></li>
+            <li><label><input type="checkbox" data-check value="devices" /><span data-i18n="check.3"></span></label></li>
+            <li><label><input type="checkbox" data-check value="official-app" /><span data-i18n="check.4"></span></label></li>
+            <li><label><input type="checkbox" data-check value="lock" /><span data-i18n="check.5"></span></label></li>
+            <li><label><input type="checkbox" data-check value="links" /><span data-i18n="check.6"></span></label></li>
+            <li><label><input type="checkbox" data-check value="backup" /><span data-i18n="check.7"></span></label></li>
+            <li><label><input type="checkbox" data-check value="report" /><span data-i18n="check.8"></span></label></li>
+          </ul>
+          <button class="btn btn--ghost btn--small" type="button" data-reset-checklist data-i18n="check.clear">Clear checks</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="flash" data-reveal>
+      <div class="section__inner">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="flash.eyebrow"></p>
+          <h2 data-i18n="flash.h2"></h2>
+          <p data-i18n="flash.lead"></p>
+        </header>
+        <div class="flash-news">
+    <a class="flash-item" href="news/01-singapore-spf-2024-06.html">
+      <span class="flash-item__num">01</span>
+      <div>
+        <h3 data-content="news.01-singapore-spf-2024-06.title">新加坡警方预警：WhatsApp 账号接管骗局再度抬头</h3>
+        <p data-content="news.01-singapore-spf-2024-06.excerpt">骗子利用已被盗账号向通讯录要验证码，或以视频通话要求屏幕共享偷看六位码，再冒充事主借钱或骗取银行卡信息。</p>
+      </div>
+      <span class="flash-item__meta" data-content="news.01-singapore-spf-2024-06.region">Singapore</span>
+    </a>
+    <a class="flash-item" href="news/02-singapore-spf-2026-03.html">
+      <span class="flash-item__num">02</span>
+      <div>
+        <h3 data-content="news.02-singapore-spf-2026-03.title">新加坡再发通告：OTP 连环骗导致账号连续失守</h3>
+        <p data-content="news.02-singapore-spf-2026-03.excerpt">骗子输入受害人号码触发 OTP，再由已被盗的「熟人」来要码；得手后复制同样话术攻击下一名联系人。</p>
+      </div>
+      <span class="flash-item__meta" data-content="news.02-singapore-spf-2026-03.region">Singapore</span>
+    </a>
+    <a class="flash-item" href="news/03-singapore-spf-2026-10.html">
+      <span class="flash-item__num">03</span>
+      <div>
+        <h3 data-content="news.03-singapore-spf-2026-10.title">盗号后冒充借钱：新加坡两月至少 128 起、损失约 24.9 万新元</h3>
+        <p data-content="news.03-singapore-spf-2026-10.excerpt">自 2026 年 9 月以来，骗子接管 WhatsApp 后假冒亲友、同事索取贷款或代付款，警方公布案件量与损失并重申 ScamShield。</p>
+      </div>
+      <span class="flash-item__meta" data-content="news.03-singapore-spf-2026-10.region">Singapore</span>
+    </a></div>
+        <p style="margin-top:1.25rem"><a class="btn btn--ghost" href="./loading.html#news.html" target="_blank" rel="noopener noreferrer" data-i18n="view.all.news"></a></p>
+      </div>
+    </section>
+
+    <section class="section section--hubs" data-reveal>
+      <div class="section__inner">
+        <header class="section__head">
+          <p class="eyebrow" data-i18n="extend.eyebrow"></p>
+          <h2 data-i18n="extend.h2"></h2>
+          <p data-i18n="extend.lead"></p>
+        </header>
+        <div class="hub-grid">
+          <a class="hub-card" href="./loading.html#tools.html" target="_blank" rel="noopener noreferrer">
+            <span class="hub-card__label" data-i18n="extend.tools.label"></span>
+            <h3 data-i18n="extend.tools.title"></h3>
+            <p data-i18n="extend.tools.lead"></p>
+            <span class="article-card__more" data-i18n="extend.tools.cta"></span>
+          </a>
+          <a class="hub-card" href="./loading.html#news.html" target="_blank" rel="noopener noreferrer">
+            <span class="hub-card__label" data-i18n="extend.news.label"></span>
+            <h3 data-i18n="extend.news.title"></h3>
+            <p data-i18n="extend.news.lead"></p>
+            <span class="article-card__more" data-i18n="extend.news.cta"></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--remind" data-reveal>
+      <div class="section__inner narrow">
+        <h2 data-i18n="closing.h2"></h2>
+        <blockquote><p data-i18n="closing.lead"></p></blockquote>
+      </div>
+    </section>
+  
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="brand brand--footer">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text"><span class="wordmark wordmark--nav" aria-hidden="true"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></span>
+        </p>
+        <p class="site-footer__note" data-i18n="footer.note"></p>
+      </div>
+      <p class="site-footer__copy" data-i18n="footer.copy" data-i18n-var-year="2026">© <span data-year></span> GuardLine</p>
+    </div>
+  </footer>
+  <script src="./locales.js"></script>
+  <script src="./i18n.js"></script>
+  <script src="./safari-gate.js"></script>
+  <script src="./script.js"></script>
+  <script src="./content-locales.js" defer></script>
+  <script src="./news-meta-locales.js" defer></script>
+  <script>
+    // Apply article/news/tool copy once heavy packs finish (keeps first paint fast).
+    (function () {
+      function refresh() {
+        if (window.ShouhaoI18n && window.SHOUHAO_CONTENT) {
+          window.ShouhaoI18n.applyDom();
+        }
+      }
+      document.querySelectorAll('script[src*="content-locales"],script[src*="news-meta"]').forEach(function (s) {
+        s.addEventListener("load", refresh);
+      });
+      window.addEventListener("load", refresh);
+    })();
+  </script>
+</body>
+</html>
