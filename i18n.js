@@ -279,16 +279,95 @@
     setLang(lang, "auto");
   };
 
+  // Short button labels — easy to scan on a small pill
+  const SHORT_LABEL = {
+    en: "EN",
+    "zh-CN": "中文",
+    "zh-TW": "繁中",
+    ja: "日本語",
+    ko: "한국어",
+    ms: "BM",
+    id: "ID",
+    es: "ES",
+    fr: "FR",
+    de: "DE",
+    "pt-BR": "PT",
+    "pt-PT": "PT",
+    ar: "ع",
+    th: "ไทย",
+    vi: "VI",
+    hi: "हि",
+    ru: "RU",
+  };
+
+  const POPULAR = ["zh-CN", "zh-TW", "en", "ms", "id", "ja", "ko", "es"];
+
   const syncSwitcherLabel = () => {
     const btn = document.querySelector("[data-lang-btn]");
+    const title = document.querySelector("[data-lang-sheet-title]");
     if (!btn) return;
     const meta = getMeta(currentLang);
-    // Visible label = language name; keep aria-label descriptive
-    btn.textContent = meta.native || currentLang;
-    btn.setAttribute("aria-label", `${t("lang.label", {}, currentLang)}: ${meta.native || currentLang}`);
+    const short = SHORT_LABEL[currentLang] || (meta.native || currentLang).slice(0, 4);
+    const labelEl = btn.querySelector("[data-lang-btn-text]");
+    if (labelEl) labelEl.textContent = short;
+    else btn.textContent = short;
+    btn.setAttribute(
+      "aria-label",
+      `${t("lang.label", {}, currentLang)}: ${meta.native || currentLang}`
+    );
+    if (title) title.textContent = t("lang.label", {}, currentLang);
     document.querySelectorAll("[data-lang-option]").forEach((b) => {
-      b.classList.toggle("is-active", b.getAttribute("data-lang-option") === currentLang);
+      const on = b.getAttribute("data-lang-option") === currentLang;
+      b.classList.toggle("is-active", on);
+      b.setAttribute("aria-selected", on ? "true" : "false");
     });
+  };
+
+  const closeSheet = (wrap, btn, sheet) => {
+    wrap.classList.remove("is-open");
+    if (btn) btn.setAttribute("aria-expanded", "false");
+    if (sheet) sheet.setAttribute("aria-hidden", "true");
+    document.documentElement.classList.remove("lang-sheet-open");
+  };
+
+  const openSheet = (wrap, btn, sheet) => {
+    wrap.classList.add("is-open");
+    btn.setAttribute("aria-expanded", "true");
+    sheet.setAttribute("aria-hidden", "false");
+    document.documentElement.classList.add("lang-sheet-open");
+    const active = sheet.querySelector(".lang-switcher__option.is-active");
+    if (active) {
+      try {
+        active.scrollIntoView({ block: "nearest" });
+      } catch (_) {}
+    }
+  };
+
+  const buildOption = (lang, onPick) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "lang-switcher__option";
+    item.setAttribute("data-lang-option", lang.code);
+    item.setAttribute("role", "option");
+    item.setAttribute("aria-selected", lang.code === currentLang ? "true" : "false");
+    if (lang.code === currentLang) item.classList.add("is-active");
+
+    const native = document.createElement("span");
+    native.className = "lang-switcher__option-native";
+    native.textContent = lang.native;
+
+    const en = document.createElement("span");
+    en.className = "lang-switcher__option-en";
+    en.textContent = lang.name;
+
+    item.appendChild(native);
+    item.appendChild(en);
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      onPick(lang.code);
+    });
+    return item;
   };
 
   const buildSwitcher = () => {
@@ -306,70 +385,106 @@
     btn.type = "button";
     btn.className = "lang-switcher__btn";
     btn.setAttribute("data-lang-btn", "");
-    btn.setAttribute("aria-haspopup", "listbox");
+    btn.setAttribute("aria-haspopup", "dialog");
     btn.setAttribute("aria-expanded", "false");
-    btn.textContent = getMeta(currentLang).native || currentLang;
+    btn.setAttribute("aria-controls", "lang-sheet");
+    btn.innerHTML =
+      '<span class="lang-switcher__globe" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z" stroke="currentColor" stroke-width="1.8"/></svg></span><span data-lang-btn-text></span>';
 
-    const menu = document.createElement("div");
-    menu.className = "lang-switcher__menu";
-    menu.setAttribute("data-lang-menu", "");
-    menu.hidden = true;
-    menu.setAttribute("role", "listbox");
+    const sheet = document.createElement("div");
+    sheet.className = "lang-switcher__sheet";
+    sheet.id = "lang-sheet";
+    sheet.setAttribute("data-lang-menu", "");
+    sheet.setAttribute("role", "dialog");
+    sheet.setAttribute("aria-modal", "true");
+    sheet.setAttribute("aria-hidden", "true");
+    sheet.setAttribute("aria-labelledby", "lang-sheet-title");
 
-    languages.forEach((lang) => {
-      const item = document.createElement("button");
-      item.type = "button";
-      item.className = "lang-switcher__option";
-      item.setAttribute("data-lang-option", lang.code);
-      item.setAttribute("role", "option");
-      item.textContent = lang.native;
-      if (lang.code === currentLang) item.classList.add("is-active");
-      item.addEventListener("click", (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setLang(lang.code, "manual");
-        syncSwitcherLabel();
-        menu.hidden = true;
-        btn.setAttribute("aria-expanded", "false");
-        wrap.classList.remove("is-open");
-      });
-      menu.appendChild(item);
+    const backdrop = document.createElement("button");
+    backdrop.type = "button";
+    backdrop.className = "lang-switcher__backdrop";
+    backdrop.setAttribute("aria-label", "Close");
+    backdrop.tabIndex = -1;
+
+    const panel = document.createElement("div");
+    panel.className = "lang-switcher__panel";
+
+    const head = document.createElement("div");
+    head.className = "lang-switcher__head";
+
+    const title = document.createElement("h2");
+    title.className = "lang-switcher__title";
+    title.id = "lang-sheet-title";
+    title.setAttribute("data-lang-sheet-title", "");
+    title.textContent = t("lang.label", {}, currentLang);
+
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "lang-switcher__close";
+    closeBtn.setAttribute("aria-label", "Close");
+    closeBtn.textContent = "×";
+
+    head.appendChild(title);
+    head.appendChild(closeBtn);
+
+    const list = document.createElement("div");
+    list.className = "lang-switcher__list";
+    list.setAttribute("role", "listbox");
+
+    const pick = (code) => {
+      setLang(code, "manual");
+      syncSwitcherLabel();
+      closeSheet(wrap, btn, sheet);
+    };
+
+    const byCode = new Map(languages.map((l) => [l.code, l]));
+    const popularWrap = document.createElement("div");
+    popularWrap.className = "lang-switcher__group";
+    POPULAR.forEach((code) => {
+      const lang = byCode.get(code);
+      if (lang) popularWrap.appendChild(buildOption(lang, pick));
     });
+
+    const restWrap = document.createElement("div");
+    restWrap.className = "lang-switcher__group lang-switcher__group--rest";
+    languages
+      .filter((l) => !POPULAR.includes(l.code))
+      .forEach((lang) => restWrap.appendChild(buildOption(lang, pick)));
+
+    list.appendChild(popularWrap);
+    list.appendChild(restWrap);
+    panel.appendChild(head);
+    panel.appendChild(list);
+    sheet.appendChild(backdrop);
+    sheet.appendChild(panel);
 
     const toggle = (e) => {
       e.preventDefault();
       e.stopPropagation();
-      const open = menu.hidden;
-      menu.hidden = !open;
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-      wrap.classList.toggle("is-open", open);
+      if (wrap.classList.contains("is-open")) closeSheet(wrap, btn, sheet);
+      else openSheet(wrap, btn, sheet);
     };
 
     btn.addEventListener("click", toggle);
-    btn.addEventListener(
-      "touchend",
-      (e) => {
-        // Prefer click; prevent ghost double-toggles on some WebViews
-        e.stopPropagation();
-      },
-      { passive: true }
-    );
-
-    document.addEventListener(
-      "click",
-      (e) => {
-        if (!wrap.contains(e.target)) {
-          menu.hidden = true;
-          btn.setAttribute("aria-expanded", "false");
-          wrap.classList.remove("is-open");
-        }
-      },
-      true
-    );
+    closeBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSheet(wrap, btn, sheet);
+    });
+    backdrop.addEventListener("click", (e) => {
+      e.preventDefault();
+      closeSheet(wrap, btn, sheet);
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && wrap.classList.contains("is-open")) {
+        closeSheet(wrap, btn, sheet);
+      }
+    });
 
     wrap.appendChild(btn);
-    wrap.appendChild(menu);
+    wrap.appendChild(sheet);
     document.body.appendChild(wrap);
+    syncSwitcherLabel();
     return wrap;
   };
 
