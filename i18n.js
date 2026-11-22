@@ -279,218 +279,103 @@
     setLang(lang, "auto");
   };
 
-  // Short button labels — easy to scan on a small pill
-  const SHORT_LABEL = {
-    en: "EN",
-    "zh-CN": "中文",
-    "zh-TW": "繁中",
-    ja: "日本語",
-    ko: "한국어",
-    ms: "BM",
-    id: "ID",
-    es: "ES",
-    fr: "FR",
-    de: "DE",
-    "pt-BR": "PT",
-    "pt-PT": "PT",
-    ar: "ع",
-    th: "ไทย",
-    vi: "VI",
-    hi: "हि",
-    ru: "RU",
-  };
-
-  const POPULAR = ["zh-CN", "zh-TW", "en", "ms", "id", "ja", "ko", "es"];
+  const QUICK_LANGS = ["zh-CN", "en", "ms", "zh-TW"];
 
   const syncSwitcherLabel = () => {
-    const btn = document.querySelector("[data-lang-btn]");
-    const title = document.querySelector("[data-lang-sheet-title]");
-    if (!btn) return;
-    const meta = getMeta(currentLang);
-    const short = SHORT_LABEL[currentLang] || (meta.native || currentLang).slice(0, 4);
-    const labelEl = btn.querySelector("[data-lang-btn-text]");
-    if (labelEl) labelEl.textContent = short;
-    else btn.textContent = short;
-    btn.setAttribute(
-      "aria-label",
-      `${t("lang.label", {}, currentLang)}: ${meta.native || currentLang}`
-    );
-    if (title) title.textContent = t("lang.label", {}, currentLang);
-    document.querySelectorAll("[data-lang-option]").forEach((b) => {
-      const on = b.getAttribute("data-lang-option") === currentLang;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-selected", on ? "true" : "false");
+    const select = document.querySelector("[data-lang-select]");
+    if (select && select.value !== currentLang) select.value = currentLang;
+    const label = document.querySelector("[data-lang-label]");
+    if (label) label.textContent = t("lang.label", {}, currentLang);
+    document.querySelectorAll("[data-lang-quick]").forEach((b) => {
+      b.classList.toggle("is-active", b.getAttribute("data-lang-quick") === currentLang);
     });
-  };
-
-  const closeSheet = (wrap, btn, sheet) => {
-    wrap.classList.remove("is-open");
-    if (sheet) {
-      sheet.classList.remove("is-open");
-      sheet.setAttribute("aria-hidden", "true");
-    }
-    if (btn) btn.setAttribute("aria-expanded", "false");
-    document.documentElement.classList.remove("lang-sheet-open");
-  };
-
-  const openSheet = (wrap, btn, sheet) => {
-    wrap.classList.add("is-open");
-    sheet.classList.add("is-open");
-    btn.setAttribute("aria-expanded", "true");
-    sheet.setAttribute("aria-hidden", "false");
-    document.documentElement.classList.add("lang-sheet-open");
-    const active = sheet.querySelector(".lang-switcher__option.is-active");
-    if (active) {
-      try {
-        active.scrollIntoView({ block: "nearest" });
-      } catch (_) {}
-    }
-  };
-
-  const buildOption = (lang, onPick) => {
-    const item = document.createElement("button");
-    item.type = "button";
-    item.className = "lang-switcher__option";
-    item.setAttribute("data-lang-option", lang.code);
-    item.setAttribute("role", "option");
-    item.setAttribute("aria-selected", lang.code === currentLang ? "true" : "false");
-    if (lang.code === currentLang) item.classList.add("is-active");
-
-    const native = document.createElement("span");
-    native.className = "lang-switcher__option-native";
-    native.textContent = lang.native;
-
-    const en = document.createElement("span");
-    en.className = "lang-switcher__option-en";
-    en.textContent = lang.name;
-
-    item.appendChild(native);
-    item.appendChild(en);
-    item.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      onPick(lang.code);
-    });
-    return item;
   };
 
   const buildSwitcher = () => {
-    const existing = document.querySelector("[data-lang-switcher]");
-    if (existing) {
+    // Drop old float / sheet UIs if any leftover in SPA / cached DOM
+    document
+      .querySelectorAll(
+        ".lang-switcher--float, .lang-switcher__sheet, [data-lang-menu], [data-lang-btn]"
+      )
+      .forEach((el) => el.remove());
+
+    let wrap = document.querySelector("[data-lang-switcher]");
+    if (wrap) {
       syncSwitcherLabel();
-      return existing;
+      return wrap;
     }
 
-    const wrap = document.createElement("div");
-    wrap.className = "lang-switcher lang-switcher--float";
+    wrap = document.createElement("div");
+    wrap.className = "lang-switcher lang-switcher--header";
     wrap.setAttribute("data-lang-switcher", "");
 
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "lang-switcher__btn";
-    btn.setAttribute("data-lang-btn", "");
-    btn.setAttribute("aria-haspopup", "dialog");
-    btn.setAttribute("aria-expanded", "false");
-    btn.setAttribute("aria-controls", "lang-sheet");
-    btn.innerHTML =
-      '<span class="lang-switcher__globe" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z" stroke="currentColor" stroke-width="1.8"/></svg></span><span data-lang-btn-text></span>';
+    const label = document.createElement("label");
+    label.className = "lang-switcher__label";
+    label.setAttribute("for", "guardline-lang-select");
+    label.setAttribute("data-lang-label", "");
+    label.textContent = t("lang.label", {}, currentLang);
 
-    const sheet = document.createElement("div");
-    sheet.className = "lang-switcher__sheet";
-    sheet.id = "lang-sheet";
-    sheet.setAttribute("data-lang-menu", "");
-    sheet.setAttribute("role", "dialog");
-    sheet.setAttribute("aria-modal", "true");
-    sheet.setAttribute("aria-hidden", "true");
-    sheet.setAttribute("aria-labelledby", "lang-sheet-title");
-
-    const backdrop = document.createElement("button");
-    backdrop.type = "button";
-    backdrop.className = "lang-switcher__backdrop";
-    backdrop.setAttribute("aria-label", "Close");
-    backdrop.tabIndex = -1;
-
-    const panel = document.createElement("div");
-    panel.className = "lang-switcher__panel";
-
-    const head = document.createElement("div");
-    head.className = "lang-switcher__head";
-
-    const title = document.createElement("h2");
-    title.className = "lang-switcher__title";
-    title.id = "lang-sheet-title";
-    title.setAttribute("data-lang-sheet-title", "");
-    title.textContent = t("lang.label", {}, currentLang);
-
-    const closeBtn = document.createElement("button");
-    closeBtn.type = "button";
-    closeBtn.className = "lang-switcher__close";
-    closeBtn.setAttribute("aria-label", "Close");
-    closeBtn.textContent = "×";
-
-    head.appendChild(title);
-    head.appendChild(closeBtn);
-
-    const list = document.createElement("div");
-    list.className = "lang-switcher__list";
-    list.setAttribute("role", "listbox");
-
-    const pick = (code) => {
-      setLang(code, "manual");
+    const select = document.createElement("select");
+    select.id = "guardline-lang-select";
+    select.className = "lang-switcher__select";
+    select.setAttribute("data-lang-select", "");
+    select.setAttribute("aria-label", t("lang.label", {}, currentLang));
+    languages.forEach((lang) => {
+      const opt = document.createElement("option");
+      opt.value = lang.code;
+      opt.textContent = lang.native;
+      if (lang.code === currentLang) opt.selected = true;
+      select.appendChild(opt);
+    });
+    // Native select — uses OS picker on iOS/Android (most reliable tap target)
+    select.addEventListener("change", () => {
+      setLang(select.value, "manual");
       syncSwitcherLabel();
-      closeSheet(wrap, btn, sheet);
-    };
-
-    const byCode = new Map(languages.map((l) => [l.code, l]));
-    const popularWrap = document.createElement("div");
-    popularWrap.className = "lang-switcher__group";
-    POPULAR.forEach((code) => {
-      const lang = byCode.get(code);
-      if (lang) popularWrap.appendChild(buildOption(lang, pick));
     });
 
-    const restWrap = document.createElement("div");
-    restWrap.className = "lang-switcher__group lang-switcher__group--rest";
-    languages
-      .filter((l) => !POPULAR.includes(l.code))
-      .forEach((lang) => restWrap.appendChild(buildOption(lang, pick)));
+    wrap.appendChild(label);
+    wrap.appendChild(select);
 
-    list.appendChild(popularWrap);
-    list.appendChild(restWrap);
-    panel.appendChild(head);
-    panel.appendChild(list);
-    sheet.appendChild(backdrop);
-    sheet.appendChild(panel);
+    const headerInner = document.querySelector(".site-header__inner");
+    if (headerInner) {
+      const toggle = headerInner.querySelector("[data-nav-toggle]");
+      if (toggle) headerInner.insertBefore(wrap, toggle);
+      else headerInner.appendChild(wrap);
+    } else {
+      // Enter splash: big dock at bottom, not overlapping ENTER
+      wrap.className = "lang-switcher lang-switcher--dock";
+      document.body.appendChild(wrap);
+    }
 
-    const toggle = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (wrap.classList.contains("is-open")) closeSheet(wrap, btn, sheet);
-      else openSheet(wrap, btn, sheet);
-    };
-
-    btn.addEventListener("click", toggle);
-    closeBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeSheet(wrap, btn, sheet);
-    });
-    backdrop.addEventListener("click", (e) => {
-      e.preventDefault();
-      closeSheet(wrap, btn, sheet);
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && wrap.classList.contains("is-open")) {
-        closeSheet(wrap, btn, sheet);
+    // One-tap chips under header (or above dock) — easiest path for main languages
+    if (!document.querySelector("[data-lang-quick-bar]")) {
+      const bar = document.createElement("div");
+      bar.className = "lang-quick";
+      bar.setAttribute("data-lang-quick-bar", "");
+      QUICK_LANGS.forEach((code) => {
+        const meta = getMeta(code);
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "lang-quick__btn";
+        b.setAttribute("data-lang-quick", code);
+        b.textContent = meta.native || code;
+        if (code === currentLang) b.classList.add("is-active");
+        b.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setLang(code, "manual");
+          syncSwitcherLabel();
+        });
+        bar.appendChild(b);
+      });
+      const header = document.querySelector(".site-header");
+      if (header && header.parentNode) {
+        header.insertAdjacentElement("afterend", bar);
+      } else {
+        wrap.appendChild(bar);
       }
-    });
+    }
 
-    wrap.appendChild(btn);
-    // Sheet must be direct on body — not inside the float button —
-    // so fixed inset covers the full viewport above page content.
-    document.body.appendChild(wrap);
-    document.body.appendChild(sheet);
-    wrap._langSheet = sheet;
     syncSwitcherLabel();
     return wrap;
   };

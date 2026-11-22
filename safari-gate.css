@@ -175,9 +175,13 @@ html.safari-gate-lock body {
   touch-action: none;
 }
 
-/* Language switcher must remain interactive while gate is locked */
-html.safari-gate-lock .lang-switcher--float,
-html.safari-gate-lock .lang-switcher--enter {
-  touch-action: manipulation;
+/* Language controls must remain interactive while gate is locked */
+html.safari-gate-lock .lang-switcher--header,
+html.safari-gate-lock .lang-switcher--dock,
+html.safari-gate-lock .lang-quick,
+html.safari-gate-lock .lang-switcher__select,
+html.safari-gate-lock .lang-quick__btn {
+  touch-action: manipulation !important;
   pointer-events: auto !important;
+  z-index: 100001;
 }

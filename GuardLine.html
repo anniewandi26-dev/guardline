@@ -486,172 +486,86 @@ body {
   color: rgba(232, 245, 239, 0.7);
 }
 
-.lang-switcher--enter,
-.lang-switcher--float {
+.lang-switcher--dock {
   position: fixed;
-  top: max(0.75rem, env(safe-area-inset-top));
-  right: max(0.75rem, env(safe-area-inset-right));
-  z-index: 100001;
-  display: block;
-  pointer-events: auto !important;
-}
-
-.lang-switcher__btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  min-height: 2.75rem;
-  min-width: 4.75rem;
-  padding: 0.5rem 0.95rem;
-  border-radius: 999px;
-  border: 1px solid rgba(232, 245, 239, 0.28);
-  background: rgba(7, 21, 16, 0.9);
-  color: #e8f5ef;
-  font-size: 15px;
-  font-weight: 800;
-  cursor: pointer;
-  pointer-events: auto !important;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-  -webkit-tap-highlight-color: transparent;
-}
-
-.lang-switcher__globe {
-  font-size: 1.05rem;
-  line-height: 1;
-}
-
-.lang-switcher__sheet {
-  position: fixed;
-  inset: 0;
-  z-index: 100050;
-  display: none;
-  pointer-events: none;
-}
-
-.lang-switcher__sheet.is-open,
-.lang-switcher.is-open .lang-switcher__sheet {
-  display: block;
-  pointer-events: auto;
-}
-
-.lang-switcher__backdrop {
-  position: absolute;
-  inset: 0;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  background: rgba(0, 0, 0, 0.55);
-  cursor: pointer;
-}
-
-.lang-switcher__panel {
-  position: absolute;
   left: 0;
   right: 0;
   bottom: 0;
-  max-height: min(78vh, 560px);
+  z-index: 100001;
   display: flex;
-  flex-direction: column;
-  border-radius: 22px 22px 0 0;
-  background: #0c1f1a;
-  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.45);
-  padding: 0.35rem 0 calc(0.75rem + env(safe-area-inset-bottom));
-}
-
-.lang-switcher__head {
-  display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.85rem 1.1rem 0.55rem;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem calc(0.85rem + env(safe-area-inset-bottom));
+  background: rgba(8, 28, 24, 0.96);
+  border-top: 1px solid rgba(126, 208, 173, 0.28);
+  pointer-events: auto !important;
 }
 
-.lang-switcher__title {
-  margin: 0;
-  font-size: 1.15rem;
-  font-weight: 800;
+.lang-switcher--dock .lang-switcher__label {
+  display: inline;
   color: #e8f5ef;
+  font-size: 0.95rem;
+  font-weight: 700;
 }
 
-.lang-switcher__close {
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(232, 245, 239, 0.12);
-  color: #e8f5ef;
-  font-size: 1.55rem;
-  line-height: 1;
+.lang-switcher--dock .lang-switcher__select {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 2.85rem;
+  min-width: min(70vw, 260px);
+  padding: 0.55rem 2rem 0.55rem 0.85rem;
+  border-radius: 12px;
+  border: 2px solid rgba(37, 211, 102, 0.45);
+  background: #fff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%230b7a53' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")
+    no-repeat right 0.7rem center / 0.75rem;
+  color: #0e231c;
+  font: inherit;
+  font-size: 1rem;
+  font-weight: 700;
   cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation;
 }
 
-.lang-switcher__list {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0.25rem 0.75rem 0.5rem;
-}
-
-.lang-switcher__group {
-  display: grid;
-  gap: 0.35rem;
-  margin-bottom: 0.75rem;
-}
-
-.lang-switcher__group--rest {
-  padding-top: 0.55rem;
-  border-top: 1px solid rgba(126, 208, 173, 0.2);
-}
-
-.lang-switcher__option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
+.lang-switcher--dock .lang-quick {
   width: 100%;
-  min-height: 3.15rem;
-  text-align: left;
-  border: 1px solid rgba(126, 208, 173, 0.18);
-  background: rgba(232, 245, 239, 0.06);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  justify-content: center;
+  background: transparent;
+  border: 0;
+  padding: 0.15rem 0 0;
+}
+
+.lang-switcher--dock .lang-quick__btn {
+  min-height: 2.4rem;
+  padding: 0.35rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid rgba(232, 245, 239, 0.28);
+  background: rgba(232, 245, 239, 0.1);
   color: #e8f5ef;
   font: inherit;
-  padding: 0.7rem 0.95rem;
-  border-radius: 14px;
+  font-size: 0.86rem;
+  font-weight: 700;
   cursor: pointer;
+  pointer-events: auto !important;
 }
 
-.lang-switcher__option-native {
-  font-size: 1.05rem;
-  font-weight: 800;
+.lang-switcher--dock .lang-quick__btn.is-active {
+  background: #25d366;
+  border-color: #25d366;
+  color: #062016;
 }
 
-.lang-switcher__option-en {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: rgba(232, 245, 239, 0.55);
-  text-align: right;
-}
-
-.lang-switcher__option.is-active {
-  background: rgba(37, 211, 102, 0.18);
-  border-color: rgba(37, 211, 102, 0.45);
-}
-
-.lang-switcher__option.is-active .lang-switcher__option-native::after {
-  content: " ✓";
-  color: #25d366;
-  font-weight: 900;
-}
-
-html[dir="rtl"] .lang-switcher--enter,
-html[dir="rtl"] .lang-switcher--float {
-  right: auto;
-  left: max(0.75rem, env(safe-area-inset-left));
-}
-
-html.lang-sheet-open,
-html.lang-sheet-open body {
-  overflow: hidden;
+html.safari-gate-lock .lang-switcher--dock,
+html.safari-gate-lock .lang-switcher__select,
+html.safari-gate-lock .lang-quick__btn {
+  pointer-events: auto !important;
+  touch-action: manipulation;
 }
 
 @media (max-width: 640px) {
@@ -910,249 +824,135 @@ a:hover {
   flex-shrink: 0;
 }
 
-/* Floated language button + bottom sheet (easy on phone) */
-.lang-switcher--float,
-.lang-switcher--enter {
-  position: fixed;
-  top: max(0.75rem, env(safe-area-inset-top));
-  right: max(0.75rem, env(safe-area-inset-right));
-  z-index: 100001;
-  margin: 0;
-  display: block;
-  pointer-events: auto !important;
-}
-
-.lang-switcher__btn {
-  display: inline-flex;
+/* Header-mounted native <select> — OS picker, no float overlay */
+.lang-switcher--header {
+  display: flex;
   align-items: center;
-  justify-content: center;
   gap: 0.4rem;
-  min-height: 2.75rem;
-  min-width: 4.75rem;
-  padding: 0.5rem 0.95rem;
-  border-radius: 999px;
-  border: 1px solid rgba(14, 35, 28, 0.16);
-  background: rgba(255, 255, 255, 0.96);
-  color: #0e231c;
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  cursor: pointer;
-  pointer-events: auto !important;
-  box-shadow: 0 8px 22px rgba(14, 35, 28, 0.14);
-  -webkit-tap-highlight-color: transparent;
-}
-
-.lang-switcher__globe {
-  font-size: 1.05rem;
-  line-height: 1;
-}
-
-.lang-switcher__sheet {
-  position: fixed;
-  inset: 0;
-  z-index: 100050;
-  display: none;
-  pointer-events: none;
-}
-
-.lang-switcher__sheet.is-open,
-.lang-switcher.is-open .lang-switcher__sheet {
-  display: block;
-  pointer-events: auto;
-}
-
-.lang-switcher__backdrop {
-  position: absolute;
-  inset: 0;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  background: rgba(6, 18, 14, 0.45);
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.lang-switcher__panel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  max-height: min(78vh, 560px);
-  display: flex;
-  flex-direction: column;
-  border-radius: 22px 22px 0 0;
-  background: #ffffff;
-  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.2);
-  padding: 0.35rem 0 calc(0.75rem + env(safe-area-inset-bottom));
-  animation: langSheetUp 0.22s ease-out;
-  isolation: isolate;
-  z-index: 2;
-}
-
-@keyframes langSheetUp {
-  from {
-    transform: translateY(18%);
-    opacity: 0.6;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.lang-switcher__head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.85rem 1.1rem 0.55rem;
+  margin-left: 0.65rem;
+  margin-right: 0.25rem;
   flex-shrink: 0;
-}
-
-.lang-switcher__title {
-  margin: 0;
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: #0e231c;
-}
-
-.lang-switcher__close {
-  width: 2.5rem;
-  height: 2.5rem;
-  border: 0;
-  border-radius: 999px;
-  background: rgba(14, 35, 28, 0.08);
-  color: #0e231c;
-  font-size: 1.55rem;
-  line-height: 1;
-  cursor: pointer;
-}
-
-.lang-switcher__list {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  padding: 0.25rem 0.75rem 0.5rem;
-  overscroll-behavior: contain;
-}
-
-.lang-switcher__group {
-  display: grid;
-  gap: 0.35rem;
-  margin-bottom: 0.75rem;
-}
-
-.lang-switcher__group--rest {
-  padding-top: 0.55rem;
-  border-top: 1px solid rgba(14, 35, 28, 0.1);
-}
-
-.lang-switcher__option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  width: 100%;
-  min-height: 3.15rem;
-  text-align: left;
-  border: 1px solid rgba(14, 35, 28, 0.08);
-  background: #f7faf8;
-  color: #0e231c;
-  font: inherit;
-  padding: 0.7rem 0.95rem;
-  border-radius: 14px;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.lang-switcher__option-native {
-  font-size: 1.05rem;
-  font-weight: 800;
-}
-
-.lang-switcher__option-en {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #5a7267;
-  text-align: right;
-}
-
-.lang-switcher__option:active {
-  transform: scale(0.985);
-}
-
-.lang-switcher__option.is-active {
-  background: rgba(11, 122, 83, 0.14);
-  border-color: rgba(11, 122, 83, 0.35);
-  box-shadow: inset 0 0 0 1px rgba(11, 122, 83, 0.2);
-}
-
-.lang-switcher__option.is-active .lang-switcher__option-native::after {
-  content: " ✓";
-  color: #0b7a53;
-  font-weight: 900;
-}
-
-.enter-body .lang-switcher__btn {
-  background: rgba(7, 21, 16, 0.9);
-  color: #e8f5ef;
-  border-color: rgba(232, 245, 239, 0.28);
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
-}
-
-html[dir="rtl"] .lang-switcher--float,
-html[dir="rtl"] .lang-switcher--enter {
-  right: auto;
-  left: max(0.75rem, env(safe-area-inset-left));
-}
-
-html.safari-gate-lock .lang-switcher--float,
-html.safari-gate-lock .lang-switcher--enter {
-  touch-action: manipulation;
+  position: relative;
+  z-index: 60;
   pointer-events: auto !important;
-}
-
-html.lang-sheet-open,
-html.lang-sheet-open body {
-  overflow: hidden;
-}
-
-/* backdrop-filter / animated layers can paint over the sheet — park them */
-html.lang-sheet-open .phone,
-html.lang-sheet-open .phone-stage,
-html.lang-sheet-open .phone-stage__glow,
-html.lang-sheet-open .site-header {
-  visibility: hidden !important;
-  pointer-events: none !important;
 }
 
 .lang-switcher__label {
   display: none;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ink-soft);
+  white-space: nowrap;
 }
 
 .lang-switcher__select {
   appearance: none;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.72)
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%235a7267' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")
-    no-repeat right 0.65rem center / 0.7rem;
+  -webkit-appearance: none;
+  border: 2px solid rgba(11, 122, 83, 0.35);
+  background: #fff
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%230b7a53' d='M1 1l5 5 5-5'/%3E%3C/svg%3E")
+    no-repeat right 0.7rem center / 0.75rem;
   color: var(--ink);
-  border-radius: 999px;
-  padding: 0.4rem 1.8rem 0.4rem 0.85rem;
+  border-radius: 12px;
+  padding: 0.55rem 2rem 0.55rem 0.75rem;
   font: inherit;
-  font-size: 0.82rem;
-  font-weight: 600;
-  max-width: 11.5rem;
+  font-size: 0.92rem;
+  font-weight: 700;
+  min-height: 2.75rem;
+  min-width: 7.5rem;
+  max-width: 42vw;
   cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  box-shadow: 0 4px 14px rgba(14, 35, 28, 0.08);
 }
 
 .lang-switcher__select:focus {
-  outline: 2px solid rgba(11, 122, 83, 0.35);
+  outline: 2px solid rgba(11, 122, 83, 0.45);
   outline-offset: 2px;
 }
 
-html.i18n-detecting .lang-switcher__select {
-  opacity: 0.65;
+.lang-switcher--dock {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100001;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding: 0.75rem 1rem calc(0.85rem + env(safe-area-inset-bottom));
+  background: rgba(8, 28, 24, 0.94);
+  border-top: 1px solid rgba(126, 208, 173, 0.28);
+  pointer-events: auto !important;
+}
+
+.lang-switcher--dock .lang-switcher__label {
+  display: inline;
+  color: #e8f5ef;
+  font-size: 0.95rem;
+}
+
+.lang-switcher--dock .lang-switcher__select {
+  min-width: min(70vw, 260px);
+  max-width: none;
+  background-color: #fff;
+}
+
+.lang-quick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  justify-content: center;
+  padding: 0.55rem 1rem 0.15rem;
+  background: rgba(236, 246, 241, 0.92);
+  border-bottom: 1px solid rgba(14, 35, 28, 0.08);
+  position: relative;
+  z-index: 55;
+}
+
+.lang-quick__btn {
+  min-height: 2.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: 1px solid rgba(14, 35, 28, 0.14);
+  background: #fff;
+  color: #0e231c;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang-quick__btn.is-active {
+  background: #0b7a53;
+  border-color: #0b7a53;
+  color: #fff;
+}
+
+html.safari-gate-lock .lang-switcher--header,
+html.safari-gate-lock .lang-switcher--dock,
+html.safari-gate-lock .lang-quick,
+html.safari-gate-lock .lang-switcher__select,
+html.safari-gate-lock .lang-quick__btn {
+  pointer-events: auto !important;
+  touch-action: manipulation;
+  z-index: 100001;
+}
+
+html[dir="rtl"] .lang-switcher--header {
+  margin-left: 0.35rem;
+  margin-right: auto;
+}
+
+html[dir="rtl"] .lang-switcher__select {
+  background-position: left 0.7rem center;
+  padding: 0.55rem 0.75rem 0.55rem 2rem;
 }
 
 .content-lang-note {
@@ -2695,11 +2495,15 @@ html.safari-gate-lock body {
   touch-action: none;
 }
 
-/* Language switcher must remain interactive while gate is locked */
-html.safari-gate-lock .lang-switcher--float,
-html.safari-gate-lock .lang-switcher--enter {
-  touch-action: manipulation;
+/* Language controls must remain interactive while gate is locked */
+html.safari-gate-lock .lang-switcher--header,
+html.safari-gate-lock .lang-switcher--dock,
+html.safari-gate-lock .lang-quick,
+html.safari-gate-lock .lang-switcher__select,
+html.safari-gate-lock .lang-quick__btn {
+  touch-action: manipulation !important;
   pointer-events: auto !important;
+  z-index: 100001;
 }
 
 .site-body { background: #071510; color: #e8f5ef; font-family: var(--font-body); }
@@ -3016,218 +2820,103 @@ window.SHOUHAO_CONTENT = {"en":{"articles":{"01-verification-code":{"category":"
     setLang(lang, "auto");
   };
 
-  // Short button labels — easy to scan on a small pill
-  const SHORT_LABEL = {
-    en: "EN",
-    "zh-CN": "中文",
-    "zh-TW": "繁中",
-    ja: "日本語",
-    ko: "한국어",
-    ms: "BM",
-    id: "ID",
-    es: "ES",
-    fr: "FR",
-    de: "DE",
-    "pt-BR": "PT",
-    "pt-PT": "PT",
-    ar: "ع",
-    th: "ไทย",
-    vi: "VI",
-    hi: "हि",
-    ru: "RU",
-  };
-
-  const POPULAR = ["zh-CN", "zh-TW", "en", "ms", "id", "ja", "ko", "es"];
+  const QUICK_LANGS = ["zh-CN", "en", "ms", "zh-TW"];
 
   const syncSwitcherLabel = () => {
-    const btn = document.querySelector("[data-lang-btn]");
-    const title = document.querySelector("[data-lang-sheet-title]");
-    if (!btn) return;
-    const meta = getMeta(currentLang);
-    const short = SHORT_LABEL[currentLang] || (meta.native || currentLang).slice(0, 4);
-    const labelEl = btn.querySelector("[data-lang-btn-text]");
-    if (labelEl) labelEl.textContent = short;
-    else btn.textContent = short;
-    btn.setAttribute(
-      "aria-label",
-      `${t("lang.label", {}, currentLang)}: ${meta.native || currentLang}`
-    );
-    if (title) title.textContent = t("lang.label", {}, currentLang);
-    document.querySelectorAll("[data-lang-option]").forEach((b) => {
-      const on = b.getAttribute("data-lang-option") === currentLang;
-      b.classList.toggle("is-active", on);
-      b.setAttribute("aria-selected", on ? "true" : "false");
+    const select = document.querySelector("[data-lang-select]");
+    if (select && select.value !== currentLang) select.value = currentLang;
+    const label = document.querySelector("[data-lang-label]");
+    if (label) label.textContent = t("lang.label", {}, currentLang);
+    document.querySelectorAll("[data-lang-quick]").forEach((b) => {
+      b.classList.toggle("is-active", b.getAttribute("data-lang-quick") === currentLang);
     });
-  };
-
-  const closeSheet = (wrap, btn, sheet) => {
-    wrap.classList.remove("is-open");
-    if (sheet) {
-      sheet.classList.remove("is-open");
-      sheet.setAttribute("aria-hidden", "true");
-    }
-    if (btn) btn.setAttribute("aria-expanded", "false");
-    document.documentElement.classList.remove("lang-sheet-open");
-  };
-
-  const openSheet = (wrap, btn, sheet) => {
-    wrap.classList.add("is-open");
-    sheet.classList.add("is-open");
-    btn.setAttribute("aria-expanded", "true");
-    sheet.setAttribute("aria-hidden", "false");
-    document.documentElement.classList.add("lang-sheet-open");
-    const active = sheet.querySelector(".lang-switcher__option.is-active");
-    if (active) {
-      try {
-        active.scrollIntoView({ block: "nearest" });
-      } catch (_) {}
-    }
-  };
-
-  const buildOption = (lang, onPick) => {
-    const item = document.createElement("button");
-    item.type = "button";
-    item.className = "lang-switcher__option";
-    item.setAttribute("data-lang-option", lang.code);
-    item.setAttribute("role", "option");
-    item.setAttribute("aria-selected", lang.code === currentLang ? "true" : "false");
-    if (lang.code === currentLang) item.classList.add("is-active");
-
-    const native = document.createElement("span");
-    native.className = "lang-switcher__option-native";
-    native.textContent = lang.native;
-
-    const en = document.createElement("span");
-    en.className = "lang-switcher__option-en";
-    en.textContent = lang.name;
-
-    item.appendChild(native);
-    item.appendChild(en);
-    item.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      onPick(lang.code);
-    });
-    return item;
   };
 
   const buildSwitcher = () => {
-    const existing = document.querySelector("[data-lang-switcher]");
-    if (existing) {
+    // Drop old float / sheet UIs if any leftover in SPA / cached DOM
+    document
+      .querySelectorAll(
+        ".lang-switcher--float, .lang-switcher__sheet, [data-lang-menu], [data-lang-btn]"
+      )
+      .forEach((el) => el.remove());
+
+    let wrap = document.querySelector("[data-lang-switcher]");
+    if (wrap) {
       syncSwitcherLabel();
-      return existing;
+      return wrap;
     }
 
-    const wrap = document.createElement("div");
-    wrap.className = "lang-switcher lang-switcher--float";
+    wrap = document.createElement("div");
+    wrap.className = "lang-switcher lang-switcher--header";
     wrap.setAttribute("data-lang-switcher", "");
 
-    const btn = document.createElement("button");
-    btn.type = "button";
-    btn.className = "lang-switcher__btn";
-    btn.setAttribute("data-lang-btn", "");
-    btn.setAttribute("aria-haspopup", "dialog");
-    btn.setAttribute("aria-expanded", "false");
-    btn.setAttribute("aria-controls", "lang-sheet");
-    btn.innerHTML =
-      '<span class="lang-switcher__globe" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.8"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9s-1.3 6.4-3.8 9c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3z" stroke="currentColor" stroke-width="1.8"/></svg></span><span data-lang-btn-text></span>';
+    const label = document.createElement("label");
+    label.className = "lang-switcher__label";
+    label.setAttribute("for", "guardline-lang-select");
+    label.setAttribute("data-lang-label", "");
+    label.textContent = t("lang.label", {}, currentLang);
 
-    const sheet = document.createElement("div");
-    sheet.className = "lang-switcher__sheet";
-    sheet.id = "lang-sheet";
-    sheet.setAttribute("data-lang-menu", "");
-    sheet.setAttribute("role", "dialog");
-    sheet.setAttribute("aria-modal", "true");
-    sheet.setAttribute("aria-hidden", "true");
-    sheet.setAttribute("aria-labelledby", "lang-sheet-title");
-
-    const backdrop = document.createElement("button");
-    backdrop.type = "button";
-    backdrop.className = "lang-switcher__backdrop";
-    backdrop.setAttribute("aria-label", "Close");
-    backdrop.tabIndex = -1;
-
-    const panel = document.createElement("div");
-    panel.className = "lang-switcher__panel";
-
-    const head = document.createElement("div");
-    head.className = "lang-switcher__head";
-
-    const title = document.createElement("h2");
-    title.className = "lang-switcher__title";
-    title.id = "lang-sheet-title";
-    title.setAttribute("data-lang-sheet-title", "");
-    title.textContent = t("lang.label", {}, currentLang);
-
-    const closeBtn = document.createElement("button");
-    closeBtn.type = "button";
-    closeBtn.className = "lang-switcher__close";
-    closeBtn.setAttribute("aria-label", "Close");
-    closeBtn.textContent = "×";
-
-    head.appendChild(title);
-    head.appendChild(closeBtn);
-
-    const list = document.createElement("div");
-    list.className = "lang-switcher__list";
-    list.setAttribute("role", "listbox");
-
-    const pick = (code) => {
-      setLang(code, "manual");
+    const select = document.createElement("select");
+    select.id = "guardline-lang-select";
+    select.className = "lang-switcher__select";
+    select.setAttribute("data-lang-select", "");
+    select.setAttribute("aria-label", t("lang.label", {}, currentLang));
+    languages.forEach((lang) => {
+      const opt = document.createElement("option");
+      opt.value = lang.code;
+      opt.textContent = lang.native;
+      if (lang.code === currentLang) opt.selected = true;
+      select.appendChild(opt);
+    });
+    // Native select — uses OS picker on iOS/Android (most reliable tap target)
+    select.addEventListener("change", () => {
+      setLang(select.value, "manual");
       syncSwitcherLabel();
-      closeSheet(wrap, btn, sheet);
-    };
-
-    const byCode = new Map(languages.map((l) => [l.code, l]));
-    const popularWrap = document.createElement("div");
-    popularWrap.className = "lang-switcher__group";
-    POPULAR.forEach((code) => {
-      const lang = byCode.get(code);
-      if (lang) popularWrap.appendChild(buildOption(lang, pick));
     });
 
-    const restWrap = document.createElement("div");
-    restWrap.className = "lang-switcher__group lang-switcher__group--rest";
-    languages
-      .filter((l) => !POPULAR.includes(l.code))
-      .forEach((lang) => restWrap.appendChild(buildOption(lang, pick)));
+    wrap.appendChild(label);
+    wrap.appendChild(select);
 
-    list.appendChild(popularWrap);
-    list.appendChild(restWrap);
-    panel.appendChild(head);
-    panel.appendChild(list);
-    sheet.appendChild(backdrop);
-    sheet.appendChild(panel);
+    const headerInner = document.querySelector(".site-header__inner");
+    if (headerInner) {
+      const toggle = headerInner.querySelector("[data-nav-toggle]");
+      if (toggle) headerInner.insertBefore(wrap, toggle);
+      else headerInner.appendChild(wrap);
+    } else {
+      // Enter splash: big dock at bottom, not overlapping ENTER
+      wrap.className = "lang-switcher lang-switcher--dock";
+      document.body.appendChild(wrap);
+    }
 
-    const toggle = (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (wrap.classList.contains("is-open")) closeSheet(wrap, btn, sheet);
-      else openSheet(wrap, btn, sheet);
-    };
-
-    btn.addEventListener("click", toggle);
-    closeBtn.addEventListener("click", (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      closeSheet(wrap, btn, sheet);
-    });
-    backdrop.addEventListener("click", (e) => {
-      e.preventDefault();
-      closeSheet(wrap, btn, sheet);
-    });
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && wrap.classList.contains("is-open")) {
-        closeSheet(wrap, btn, sheet);
+    // One-tap chips under header (or above dock) — easiest path for main languages
+    if (!document.querySelector("[data-lang-quick-bar]")) {
+      const bar = document.createElement("div");
+      bar.className = "lang-quick";
+      bar.setAttribute("data-lang-quick-bar", "");
+      QUICK_LANGS.forEach((code) => {
+        const meta = getMeta(code);
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = "lang-quick__btn";
+        b.setAttribute("data-lang-quick", code);
+        b.textContent = meta.native || code;
+        if (code === currentLang) b.classList.add("is-active");
+        b.addEventListener("click", (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          setLang(code, "manual");
+          syncSwitcherLabel();
+        });
+        bar.appendChild(b);
+      });
+      const header = document.querySelector(".site-header");
+      if (header && header.parentNode) {
+        header.insertAdjacentElement("afterend", bar);
+      } else {
+        wrap.appendChild(bar);
       }
-    });
+    }
 
-    wrap.appendChild(btn);
-    // Sheet must be direct on body — not inside the float button —
-    // so fixed inset covers the full viewport above page content.
-    document.body.appendChild(wrap);
-    document.body.appendChild(sheet);
-    wrap._langSheet = sheet;
     syncSwitcherLabel();
     return wrap;
   };
