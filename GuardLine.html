@@ -524,11 +524,12 @@ body {
 .lang-switcher__sheet {
   position: fixed;
   inset: 0;
-  z-index: 100002;
+  z-index: 100050;
   display: none;
   pointer-events: none;
 }
 
+.lang-switcher__sheet.is-open,
 .lang-switcher.is-open .lang-switcher__sheet {
   display: block;
   pointer-events: auto;
@@ -950,11 +951,12 @@ a:hover {
 .lang-switcher__sheet {
   position: fixed;
   inset: 0;
-  z-index: 100002;
+  z-index: 100050;
   display: none;
   pointer-events: none;
 }
 
+.lang-switcher__sheet.is-open,
 .lang-switcher.is-open .lang-switcher__sheet {
   display: block;
   pointer-events: auto;
@@ -3049,13 +3051,17 @@ window.SHOUHAO_CONTENT = {"en":{"articles":{"01-verification-code":{"category":"
 
   const closeSheet = (wrap, btn, sheet) => {
     wrap.classList.remove("is-open");
+    if (sheet) {
+      sheet.classList.remove("is-open");
+      sheet.setAttribute("aria-hidden", "true");
+    }
     if (btn) btn.setAttribute("aria-expanded", "false");
-    if (sheet) sheet.setAttribute("aria-hidden", "true");
     document.documentElement.classList.remove("lang-sheet-open");
   };
 
   const openSheet = (wrap, btn, sheet) => {
     wrap.classList.add("is-open");
+    sheet.classList.add("is-open");
     btn.setAttribute("aria-expanded", "true");
     sheet.setAttribute("aria-hidden", "false");
     document.documentElement.classList.add("lang-sheet-open");
@@ -3206,8 +3212,11 @@ window.SHOUHAO_CONTENT = {"en":{"articles":{"01-verification-code":{"category":"
     });
 
     wrap.appendChild(btn);
-    wrap.appendChild(sheet);
+    // Sheet must be direct on body — not inside the float button —
+    // so fixed inset covers the full viewport above page content.
     document.body.appendChild(wrap);
+    document.body.appendChild(sheet);
+    wrap._langSheet = sheet;
     syncSwitcherLabel();
     return wrap;
   };

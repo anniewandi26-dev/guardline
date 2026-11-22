@@ -285,11 +285,12 @@ a:hover {
 .lang-switcher__sheet {
   position: fixed;
   inset: 0;
-  z-index: 100002;
+  z-index: 100050;
   display: none;
   pointer-events: none;
 }
 
+.lang-switcher__sheet.is-open,
 .lang-switcher.is-open .lang-switcher__sheet {
   display: block;
   pointer-events: auto;

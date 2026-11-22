@@ -325,13 +325,17 @@
 
   const closeSheet = (wrap, btn, sheet) => {
     wrap.classList.remove("is-open");
+    if (sheet) {
+      sheet.classList.remove("is-open");
+      sheet.setAttribute("aria-hidden", "true");
+    }
     if (btn) btn.setAttribute("aria-expanded", "false");
-    if (sheet) sheet.setAttribute("aria-hidden", "true");
     document.documentElement.classList.remove("lang-sheet-open");
   };
 
   const openSheet = (wrap, btn, sheet) => {
     wrap.classList.add("is-open");
+    sheet.classList.add("is-open");
     btn.setAttribute("aria-expanded", "true");
     sheet.setAttribute("aria-hidden", "false");
     document.documentElement.classList.add("lang-sheet-open");
@@ -482,8 +486,11 @@
     });
 
     wrap.appendChild(btn);
-    wrap.appendChild(sheet);
+    // Sheet must be direct on body — not inside the float button —
+    // so fixed inset covers the full viewport above page content.
     document.body.appendChild(wrap);
+    document.body.appendChild(sheet);
+    wrap._langSheet = sheet;
     syncSwitcherLabel();
     return wrap;
   };
