@@ -283,8 +283,9 @@
     const btn = document.querySelector("[data-lang-btn]");
     if (!btn) return;
     const meta = getMeta(currentLang);
+    // Visible label = language name; keep aria-label descriptive
     btn.textContent = meta.native || currentLang;
-    btn.setAttribute("aria-label", t("lang.label", {}, currentLang));
+    btn.setAttribute("aria-label", `${t("lang.label", {}, currentLang)}: ${meta.native || currentLang}`);
     document.querySelectorAll("[data-lang-option]").forEach((b) => {
       b.classList.toggle("is-active", b.getAttribute("data-lang-option") === currentLang);
     });
