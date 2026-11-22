@@ -982,10 +982,12 @@ a:hover {
   display: flex;
   flex-direction: column;
   border-radius: 22px 22px 0 0;
-  background: #fff;
+  background: #ffffff;
   box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.2);
   padding: 0.35rem 0 calc(0.75rem + env(safe-area-inset-bottom));
   animation: langSheetUp 0.22s ease-out;
+  isolation: isolate;
+  z-index: 2;
 }
 
 @keyframes langSheetUp {
@@ -1113,6 +1115,15 @@ html.safari-gate-lock .lang-switcher--enter {
 html.lang-sheet-open,
 html.lang-sheet-open body {
   overflow: hidden;
+}
+
+/* backdrop-filter / animated layers can paint over the sheet — park them */
+html.lang-sheet-open .phone,
+html.lang-sheet-open .phone-stage,
+html.lang-sheet-open .phone-stage__glow,
+html.lang-sheet-open .site-header {
+  visibility: hidden !important;
+  pointer-events: none !important;
 }
 
 .lang-switcher__label {
