@@ -10,7 +10,8 @@ import { fileURLToPath } from "node:url";
 const root = dirname(fileURLToPath(import.meta.url));
 const run = (cmd, args) => {
   console.log(">", cmd, args.join(" "));
-  const r = spawnSync(cmd, args, { cwd: root, stdio: "inherit", shell: true });
+  // shell:false so Windows does not re-split -m "multi word commit"
+  const r = spawnSync(cmd, args, { cwd: root, stdio: "inherit", shell: false });
   if (r.status) process.exit(r.status || 1);
 };
 
