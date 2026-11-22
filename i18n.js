@@ -286,17 +286,10 @@
 
     wrap.appendChild(select);
 
-    const headerInner = document.querySelector(".site-header__inner");
-    if (headerInner) {
-      const toggle = headerInner.querySelector(".nav-toggle");
-      if (toggle) headerInner.insertBefore(wrap, toggle);
-      else headerInner.appendChild(wrap);
-    } else if (document.body.classList.contains("enter-body")) {
-      wrap.classList.add("lang-switcher--enter");
-      document.body.appendChild(wrap);
-    } else {
-      document.body.prepend(wrap);
-    }
+    // Always mount on body with fixed high z-index so it stays clickable
+    // above the Safari gate overlay (and works on enter + inner pages).
+    wrap.classList.add("lang-switcher--float");
+    document.body.appendChild(wrap);
 
     return wrap;
   };

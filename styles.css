@@ -244,6 +244,16 @@ a:hover {
   flex-shrink: 0;
 }
 
+/* Floated switcher is owned by i18n.js (body fixed) — keep above Safari gate */
+.lang-switcher--float {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  z-index: 100001;
+  margin: 0;
+  pointer-events: auto !important;
+}
+
 .lang-switcher__label {
   display: none;
 }

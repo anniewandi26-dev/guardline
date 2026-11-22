@@ -174,3 +174,10 @@ html.safari-gate-lock body {
   overflow: hidden !important;
   touch-action: none;
 }
+
+/* Language switcher must remain interactive while gate is locked */
+html.safari-gate-lock .lang-switcher--float,
+html.safari-gate-lock .lang-switcher--enter {
+  touch-action: manipulation;
+  pointer-events: auto !important;
+}
