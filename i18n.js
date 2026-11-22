@@ -252,8 +252,24 @@
 
     document.documentElement.classList.add("i18n-detecting");
     const country = await detectCountry();
-    const lang = langFromCountry(country);
     document.documentElement.classList.remove("i18n-detecting");
+
+    // User may have picked a language while IP was still detecting — never overwrite.
+    if (currentMode === "manual") return;
+
+    try {
+      if (store.getItem(STORE_MODE) === "manual") {
+        const picked = store.getItem(STORE_LANG);
+        if (isValid(picked)) {
+          setLang(picked, "manual");
+          return;
+        }
+      }
+    } catch (_) {
+      /* ignore */
+    }
+
+    const lang = langFromCountry(country);
     setLang(lang, "auto");
   };
 
@@ -281,8 +297,17 @@
     });
 
     select.addEventListener("change", () => {
+      // Manual pick wins immediately and blocks late IP detection overwrite.
       setLang(select.value, "manual");
     });
+    // iOS/Safari: ensure the native picker opens on first tap
+    select.addEventListener(
+      "touchend",
+      (e) => {
+        e.stopPropagation();
+      },
+      { passive: true }
+    );
 
     wrap.appendChild(select);
 
