@@ -60,6 +60,15 @@ function shell({
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="${description}"${descAttr} />
   <title${titleAttr}>${title}</title>
+  <script>
+    (function () {
+      if (/github\\.io$/i.test(location.hostname)) {
+        var b = document.createElement("base");
+        b.href = "/guardline/";
+        document.head.insertBefore(b, document.head.firstChild);
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="${FONT_HREF}" rel="stylesheet" />
@@ -544,6 +553,15 @@ const enterPage = `<!DOCTYPE html>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="${SITE}入口：${TAGLINE}" />
   <title data-i18n="enter.title">Enter ${SITE}</title>
+  <script>
+    (function () {
+      if (/github\\.io$/i.test(location.hostname)) {
+        var b = document.createElement("base");
+        b.href = "/guardline/";
+        document.head.insertBefore(b, document.head.firstChild);
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="${FONT_HREF}" rel="stylesheet" />

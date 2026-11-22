@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="从域名、话术压迫感到「要你做什么」，系统教你拆穿假登录页。需要网页版时，只走你自己输入的官方地址。" data-content="articles.09-phishing-sites.excerpt" />
   <title>仿冒官网与钓鱼链接：看起来像，也不要点 · GuardLine</title>
+  <script>
+    (function () {
+      if (/github\.io$/i.test(location.hostname)) {
+        var b = document.createElement("base");
+        b.href = "/guardline/";
+        document.head.insertBefore(b, document.head.firstChild);
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600;700;800&family=Outfit:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Sans+Arabic:wght@400;600;700&display=swap" rel="stylesheet" />
