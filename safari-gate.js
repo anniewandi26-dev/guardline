@@ -234,12 +234,14 @@
       });
     }
 
+    const refreshGateCopy = () => {
+      const root = document.getElementById("safari-gate");
+      if (root && !root.hidden) applyText(root);
+    };
+    window.addEventListener("shouhao:lang", refreshGateCopy);
     document.addEventListener("change", (e) => {
       if (e.target && e.target.matches?.("[data-lang-select]")) {
-        setTimeout(() => {
-          const root = document.getElementById("safari-gate");
-          if (root && !root.hidden) applyText(root);
-        }, 0);
+        setTimeout(refreshGateCopy, 0);
       }
     });
   };
