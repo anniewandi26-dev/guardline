@@ -380,6 +380,16 @@
     return wrap;
   };
 
+  const remountSwitcher = () => {
+    document
+      .querySelectorAll(
+        "[data-lang-switcher],[data-lang-quick-bar],.lang-switcher__sheet,[data-lang-btn],[data-lang-menu]"
+      )
+      .forEach((el) => el.remove());
+    buildSwitcher();
+    syncSwitcherLabel();
+  };
+
   window.ShouhaoI18n = {
     t: (key, vars) => t(key, vars, currentLang),
     getLang: () => currentLang,
@@ -387,6 +397,7 @@
     setLang,
     ready,
     applyDom: () => applyDom(currentLang),
+    remountSwitcher,
   };
 
   const boot = async () => {

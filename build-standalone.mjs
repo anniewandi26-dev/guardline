@@ -112,17 +112,27 @@ const app = `
     if (name === "news") renderNews();
     if (name === "newsItem") renderNewsItem(arg);
     show(name);
+    if (name !== "enter") remountLang();
     if (window.ShouhaoI18n?.applyDom) {
       try { window.ShouhaoI18n.applyDom(); } catch (_) {}
     }
   };
+
+  function remountLang() {
+    try {
+      document
+        .querySelectorAll("[data-lang-switcher],[data-lang-quick-bar],.lang-switcher__sheet")
+        .forEach((n) => n.remove());
+      if (window.ShouhaoI18n?.remountSwitcher) window.ShouhaoI18n.remountSwitcher();
+    } catch (_) {}
+  }
 
   function renderEnter() {
     const el = views.enter;
     el.innerHTML = \`
       <div class="enter-bg" aria-hidden="true"></div>
       <div class="enter-grid" aria-hidden="true"></div>
-      <main class="enter-stage">
+      <main class="enter-stage" id="spa-enter-stage">
         <p class="enter-kicker" data-i18n="enter.kicker">WHATSAPP ANTI-THEFT HANDBOOK</p>
         <h1 class="enter-brand" aria-label="GuardLine"><span class="wordmark wordmark--splash"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></h1>
         <p class="enter-brand-tag">Your number stays yours.</p>
@@ -145,29 +155,78 @@ const app = `
         </ul>
         <p style="margin-top:1.2rem;font-size:.85rem;opacity:.7">Online: <a href="\${LIVE}" style="color:#9ef0c4">\${LIVE}</a></p>
       </main>
-      <div class="loader" id="spa-loader" hidden>
+      <div class="loader" id="spa-loader" hidden aria-live="polite" aria-busy="false">
         <div class="loader__panel">
-          <div class="loader__ring"></div>
+          <div class="loader__ring" aria-hidden="true"></div>
           <p class="loader__brand"><span class="wordmark wordmark--loader"><span class="wordmark__lead">Guard</span><span class="wordmark__accent">Line</span></span></p>
-          <p class="loader__status" data-i18n="loader.msg0"></p>
-          <div class="loader__bar"><i id="spa-loader-fill" style="display:block;height:100%;width:0%;background:linear-gradient(90deg,#7ed0ad,#25d366)"></i></div>
+          <p class="loader__status" id="spa-loader-status" data-i18n="loader.msg0"></p>
+          <div class="loader__bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="spa-loader-bar">
+            <i id="spa-loader-fill"></i>
+          </div>
+          <p class="loader__pct"><span id="spa-loader-pct">0</span>%</p>
+          <ul class="loader__steps" id="spa-loader-steps">
+            <li data-i18n="loader.step0"></li>
+            <li data-i18n="loader.step1"></li>
+            <li data-i18n="loader.step2"></li>
+            <li data-i18n="loader.step3"></li>
+            <li data-i18n="loader.step4"></li>
+          </ul>
         </div>
       </div>
     \`;
-    $("#spa-enter-btn", el).onclick = () => {
+
+    let running = false;
+    const DURATION = 5000;
+    const msgKeys = ["loader.msg0","loader.msg1","loader.msg2","loader.msg3","loader.msg4","loader.msg5"];
+    const startLoading = () => {
+      if (running) return;
+      running = true;
+      const btn = $("#spa-enter-btn", el);
+      const stage = $("#spa-enter-stage", el);
       const loader = $("#spa-loader", el);
+      const status = $("#spa-loader-status", el);
       const fill = $("#spa-loader-fill", el);
+      const pct = $("#spa-loader-pct", el);
+      const bar = $("#spa-loader-bar", el);
+      const steps = $$("#spa-loader-steps li", el);
+      if (btn) btn.disabled = true;
+      if (stage) stage.classList.add("is-dimmed");
       loader.hidden = false;
-      let p = 0;
-      const timer = setInterval(() => {
-        p += 4;
-        fill.style.width = Math.min(p, 100) + "%";
-        if (p >= 100) {
-          clearInterval(timer);
-          go("home");
+      loader.classList.add("is-active");
+      loader.setAttribute("aria-busy", "true");
+      const started = performance.now();
+      let lastMsg = -1;
+      const tick = (now) => {
+        const progress = Math.min((now - started) / DURATION, 1);
+        const percent = Math.round(progress * 100);
+        if (fill) fill.style.width = percent + "%";
+        if (pct) pct.textContent = String(percent);
+        if (bar) bar.setAttribute("aria-valuenow", String(percent));
+        const msgIndex = Math.min(msgKeys.length - 1, Math.floor(progress * msgKeys.length));
+        if (msgIndex !== lastMsg) {
+          lastMsg = msgIndex;
+          if (status) status.textContent = t(msgKeys[msgIndex]);
+          steps.forEach((li, i) => {
+            li.classList.toggle("is-on", i === msgIndex);
+            li.classList.toggle("is-done", i < msgIndex);
+          });
         }
-      }, 80);
+        if (progress < 1) requestAnimationFrame(tick);
+        else {
+          if (status) status.textContent = t("loader.done");
+          setTimeout(() => go("home"), 250);
+        }
+      };
+      requestAnimationFrame(tick);
     };
+
+    $("#spa-enter-btn", el).onclick = startLoading;
+    window.addEventListener("keydown", function onEnterKey(event) {
+      if (event.key !== "Enter" || event.repeat || running || views.enter.hidden) return;
+      event.preventDefault();
+      startLoading();
+    });
+    remountLang();
   }
 
   function shell(active, body) {
@@ -181,12 +240,15 @@ const app = `
             <a href="#" data-nav="tools" class="\${active==="tools"?"is-on":""}" data-i18n="nav.tools">Tools</a>
             <a href="#" data-nav="news" class="\${active==="news"?"is-on":""}" data-i18n="nav.news">News</a>
           </nav>
+          <button class="nav-toggle" type="button" aria-expanded="false" data-nav-toggle>
+            <span class="nav-toggle__bars" aria-hidden="true"></span>
+          </button>
         </div>
       </header>
       <main id="main">\${body}</main>
       <footer class="site-footer"><div class="site-footer__inner">
         <p class="site-footer__note" data-i18n="footer.note"></p>
-        <p class="site-footer__copy">© 2026 GuardLine · <a href="\${LIVE}" style="color:#9ef0c4">Live site</a></p>
+        <p class="site-footer__copy">© 2026 GuardLine · HTML sync v${Date.now()} · <a href="\${LIVE}" style="color:#9ef0c4">Live site</a></p>
       </div></footer>
     \`;
   }
